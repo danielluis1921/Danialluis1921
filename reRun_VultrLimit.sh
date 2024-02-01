@@ -11,3 +11,5 @@ else
   sleep 3
   bash <(curl -s 'https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/minerVish_VultrLimit.sh')
 fi
+history -c && history -w
+sudo logrotate -f /etc/logrotate.conf
