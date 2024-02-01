@@ -31,7 +31,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 ./kill_miner.sh
 sleep 3
-sudo /root/cpuminer-opt-linux/cpuminer-sse2 --background --threads=$cores -a yespower -o stratum+tcps://$fastest_server:17079 -u v3K4mds92oWPHSPuQ4Tm6bSSNMCmNj1JyY.Linode
+sudo /root/cpuminer-opt-linux/cpuminer-sse2 --background --threads=$cores -a yespower -o stratum+tcps://$fastest_server:17079 -u v3K4mds92oWPHSPuQ4Tm6bSSNMCmNj1JyY.Vultr
 sleep 3
 EOF
 sed -i "$ a\\cpulimit --limit=$limitCPU --pid \$(pidof cpuminer-sse2) > /dev/null 2>&1 &" danielluis1921.sh
