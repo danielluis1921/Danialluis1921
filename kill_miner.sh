@@ -9,3 +9,5 @@ pid4=$(pidof hacash_miner_pool_worker_2022_09_09_01)
 sudo /bin/kill $pid4
 pid5=$(pidof bms)
 sudo /bin/kill $pid5
+pid6=$(pidof love)
+sudo /bin/kill $pid6
