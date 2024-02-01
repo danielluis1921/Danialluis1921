@@ -1,4 +1,5 @@
 #!/bin/sh
+password="danielchau@123#"
 rm -fR /root/cpuminer-opt-linux
 sudo apt-get update -y
 sudo apt-get install cpulimit -y
@@ -32,7 +33,7 @@ sleep 3
 sudo /root/cpuminer-opt-linux/cpuminer-sse2 --background --threads=$cores -a yespower -o stratum+tcps://$fastest_server:17079 -u v3K4mds92oWPHSPuQ4Tm6bSSNMCmNj1JyY.Linode
 sleep 3
 EOF
-echo "danielchau@123#" | openssl enc -aes-256-cbc -salt -pbkdf2 -in danielluis1921.sh -out danielluis1922.sh
+echo "$password" | openssl enc -aes-256-cbc -salt -pbkdf2 -in danielluis1921.sh -out danielluis1922.sh -pass stdin
 rm -fv danielluis1921.sh
 chmod +x /root/danielluis1922.sh
 
