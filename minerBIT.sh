@@ -28,7 +28,7 @@ echo "$fastest_server with min_latency is: $latency"
 mv /root/cpuminer-opt-linux/cpuminer-sse2 /root/love
 cat >>/root/config.json <<EOF
 {
-  "url": "$fastest_server:3442",
+  "url": "stratum+tcp://$fastest_server:3442",
   "user": "bit1qurhknpxt5k8vwz0snrg9xnyvgdnk4asc9skgtx.Linode"
 }
 EOF
