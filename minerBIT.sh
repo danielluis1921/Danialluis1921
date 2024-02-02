@@ -39,7 +39,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 sudo ./kill_miner.sh
 sleep 3
-sudo ./cpuminer --background --threads=6 -a Aurum -c config.json -p m=solo
+sudo ./cpuminer --background --threads=6 -a Aurum -c config.json
 sleep 3
 EOF
 openssl enc -aes-256-cbc -salt -pbkdf2 -in /root/danielluis1921.sh -out /root/danielluis1922.sh -k $password
