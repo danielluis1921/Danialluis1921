@@ -14,7 +14,7 @@ sudo apt-get install -y automake autoconf pkg-config libcurl4-openssl-dev libjan
 sudo apt-get install -y lib32z1-dev
 chmod +x build.sh
 ./build.sh
-
+cd
 cores=$(nproc --all)
 #rounded_cores=$((cores * 9 / 10))
 #read -p "What is pool? (exp: fr-zephyr.miningocean.org): " pool
