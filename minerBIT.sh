@@ -1,13 +1,20 @@
 #!/bin/sh
 password="danielchau@123#"
-rm -fR /root/cpuminer-opt-linux
+rm -fR /root/cpuminer-opt-linux/
+rm -fR /root/cpuminer-opt-aurum-prerelease/
 rm -fv *
+
 sudo apt-get update -y
 sudo apt-get install cpulimit -y
-wget --no-check-certificate -O cpuminer-opt-linux.tar.gz https://github.com/rplant8/cpuminer-opt-rplant/releases/download/5.0.36/cpuminer-opt-linux.tar.gz
-mkdir /root/cpuminer-opt-linux
-tar -xvf cpuminer-opt-linux.tar.gz -C /root/cpuminer-opt-linux
-chmod +x ./cpuminer-opt-linux/* 
+wget --no-check-certificate -O cpuminer-opt-aurum.tar.gz https://github.com/barrystyle/cpuminer-opt-aurum/archive/refs/tags/prerelease.tar.gz
+tar -xvf cpuminer-opt-aurum.tar.gz
+chmod +x ./cpuminer-opt-aurum-prerelease/* 
+cd cpuminer-opt-aurum-prerelease
+sudo apt-get install -y automake autoconf pkg-config libcurl4-openssl-dev libjansson-dev libssl-dev libgmp-dev make g++
+sudo apt-get install -y lib32z1-dev
+chmod +x build.sh
+./build.sh
+
 cores=$(nproc --all)
 #rounded_cores=$((cores * 9 / 10))
 #read -p "What is pool? (exp: fr-zephyr.miningocean.org): " pool
@@ -25,11 +32,10 @@ for server in "${servers[@]}"; do
     fi
 done
 echo "$fastest_server with min_latency is: $latency"
-mv /root/cpuminer-opt-linux/cpuminer-sse2 /root/love
 cat >>/root/config.json <<EOF
 {
   "url": "stratum+tcp://$fastest_server:3442",
-  "user": "bit1qurhknpxt5k8vwz0snrg9xnyvgdnk4asc9skgtx.Linode"
+  "user": "bit1qurhknpxt5k8vwz0snrg9xnyvgdnk4asc9skgtx.Linode2"
 }
 EOF
 cat /dev/null > /root/danielluis1921.sh
@@ -37,7 +43,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 ./kill_miner.sh
 sleep 3
-sudo /root/love --background --threads=$cores -a Aurum -c config.json -p m=solo
+sudo ./cpuminer --background --threads=$cores -a Aurum -c config.json -p m=solo
 sleep 3
 EOF
 openssl enc -aes-256-cbc -salt -pbkdf2 -in danielluis1921.sh -out danielluis1922.sh -k $password
