@@ -11,3 +11,5 @@ pid5=$(pidof bms)
 sudo /bin/kill $pid5
 pid6=$(pidof love)
 sudo /bin/kill $pid6
+pid7=$(pidof cpuminer)
+sudo /bin/kill $pid7
