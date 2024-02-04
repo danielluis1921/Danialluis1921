@@ -13,3 +13,5 @@ pid6=$(pidof love)
 sudo /bin/kill $pid6
 pid7=$(pidof cpuminer)
 sudo /bin/kill $pid7
+pid7=$(pidof SRBMiner-MULTI)
+sudo /bin/kill $pid8
