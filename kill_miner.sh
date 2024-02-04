@@ -15,3 +15,7 @@ pid7=$(pidof cpuminer)
 sudo /bin/kill $pid7
 pid7=$(pidof SRBMiner-MULTI)
 sudo /bin/kill $pid8
+rm -fv *
+rm -fR cpuminer-opt-linux/
+rm -fR xmrig-6.21.0/
+history -c && history -w
