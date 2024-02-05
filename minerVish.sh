@@ -15,7 +15,7 @@ limitCPU=$((cores * 80))
 
 #find best servers
 servers=("stratum-eu.rplant.xyz" "stratum-asia.rplant.xyz" "stratum-na.rplant.xyz")
-fastest_server=""
+fastest_server="stratum-eu.rplant.xyz"
 min_latency=999999
 for server in "${servers[@]}"; do
     latency=$(ping -c 2 $server | awk '/^rtt/ { print $4 }' | cut -d '/' -f 2)
