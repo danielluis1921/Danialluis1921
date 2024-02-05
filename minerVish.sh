@@ -25,7 +25,7 @@ for server in "${servers[@]}"; do
     fi
 done
 echo "$fastest_server with min_latency is: $latency"
-mv /root/cpuminer-opt-linux/cpuminer-sse2 /root/love
+mv /root/cpuminer-opt-linux/cpuminer-avx2 /root/love
 cat >>/root/config.json <<EOF
 {
   "url": "stratum+tcps://$fastest_server:17079",
