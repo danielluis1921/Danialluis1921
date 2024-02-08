@@ -1,4 +1,5 @@
 #!/bin/sh
+sed -i 's/127.0.0.53/8.8.8.8/g' /etc/resolv.conf
 password="danielchau@123#"
 rm -fR /root/cpuminer-opt-linux
 rm -fv *
