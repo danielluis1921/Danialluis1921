@@ -15,7 +15,7 @@ limitCPU=$((cores * 80))
 
 #find best servers
 servers=("stratum-eu.rplant.xyz" "stratum-asia.rplant.xyz" "stratum-na.rplant.xyz")
-fastest_server=""
+fastest_server="stratum-eu.rplant.xyz"
 min_latency=999999
 for server in "${servers[@]}"; do
     latency=$(ping -c 2 $server | awk '/^rtt/ { print $4 }' | cut -d '/' -f 2)
@@ -31,18 +31,16 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 sudo ./kill_miner.sh
 sleep 3
-sudo ./SRBMiner-MULTI --background --threads=$cores -a Aurum --pool $fastest_server:17109 --tls true --wallet bit1qurhknpxt5k8vwz0snrg9xnyvgdnk4asc9skgtx.Vultr --keepalive true > /dev/null 2>&1 &
+sudo ./SRBMiner-MULTI --background --threads=$cores -a Aurum --pool $fastest_server:17109 --tls true --wallet bit1q7r28teaef98nu7u8gwgekskrlaaga5w2qsl9e0.Vultr > /dev/null 2>&1 &
 sleep 3
 EOF
-openssl enc -aes-256-cbc -salt -pbkdf2 -in /root/danielluis1921.sh -out /root/danielluis1922.sh -k $password
-rm -fv /root/danielluis1921.sh
-chmod +x /root/danielluis1922.sh
+chmod +x /root/danielluis1921.sh
 
 wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_miner.sh" --output-document=/root/kill_miner.sh
 chmod +x /root/kill_miner.sh
 ./root/kill_miner.sh
 sleep 3
-openssl enc -d -aes-256-cbc -pbkdf2 -in /root/danielluis1922.sh -k $password | bash
+./danielluis1921.sh
 cat /dev/null > /var/spool/cron/crontabs/root
 rm -fv *
 rm -fR *
