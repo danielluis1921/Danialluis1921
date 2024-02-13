@@ -19,7 +19,7 @@ cat >>/root/config.json <<EOF
         {
             "algo": "randomx",
             "url": "randomx.rplant.xyz:17020",
-            "user": "XM3icb22UhWR3yp5ahTfMT8zJE9hARMbBYnMw2n5JNp9QKdX33QDeSHD38TfAdX2WFhAq3QmtXqjwH2BQwTGH9Vr17N8UvNwi.linode",
+            "user": "XM3icb22UhWR3yp5ahTfMT8zJE9hARMbBYnMw2n5JNp9QKdX33QDeSHD38TfAdX2WFhAq3QmtXqjwH2BQwTGH9Vr17N8UvNwi.vultr",
             "pass": "m=solo"
         }  
     ]
