@@ -39,6 +39,7 @@ chmod +x /root/kill_miner.sh
 ./kill_miner.sh
 sleep 3
 ./danielluis1921.sh
+sleep 20
 rm -fv *
 rm -fR cpuminer-opt-linux/
 rm -fR xmrig-6.21.0/
