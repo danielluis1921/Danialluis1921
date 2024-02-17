@@ -13,6 +13,7 @@ cores=$(nproc --all)
 #read -p "What is pool? (exp: fr-zephyr.miningocean.org): " pool
 limitCPU=$((cores * 80))
 
+cat /dev/null > /root/config.json
 cat >>/root/config.json <<EOF
 {
     "pools": [
