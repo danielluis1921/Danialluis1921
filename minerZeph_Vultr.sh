@@ -34,7 +34,7 @@ cat >>/root/config.json <<EOF
             "algo": "rx/0",
             "url": "$fastest_server:5352",
             "user": "ZEPHsAaXf38dbpKfxBF3SrF9V2SF9snNvactD532z218VnsvndisPQ4GC2LFubp4xEKVe5nPZnmb2NtycPT6YAL3gNRYgtBWAWJ",
-            "pass": "Linode"
+            "pass": "Vultr"
         }  
     ]
 }
