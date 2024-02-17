@@ -33,7 +33,7 @@ cat >>/root/config.json <<EOF
         {
             "algo": "rx/0",
             "url": "$fastest_server:5352",
-            "user": "ZEPHs89Sf9wUz9F8T7uDWyFNeTD6TmMJzJZc5qsvEoPyQvzmxnTWzZp5jQuKnyXfpELgumnsyzsy74VpDs5R7aU5EfoCdRfzGwb",
+            "user": "ZEPHsAaXf38dbpKfxBF3SrF9V2SF9snNvactD532z218VnsvndisPQ4GC2LFubp4xEKVe5nPZnmb2NtycPT6YAL3gNRYgtBWAWJ",
             "pass": "Linode"
         }  
     ]
