@@ -7,7 +7,7 @@ sudo apt-get install cpulimit -y
 wget --no-check-certificate -O xmrig.tar.gz https://github.com/xmrig/xmrig/releases/download/v6.21.0/xmrig-6.21.0-linux-static-x64.tar.gz
 tar -xvf xmrig.tar.gz
 chmod +x ./xmrig-6.21.0/* 
-mv /root/xmrig-6.21.0/xmrig /root/love
+mv /root/xmrig-6.21.0/* /root/
 cores=$(nproc --all)
 #rounded_cores=$((cores * 9 / 10))
 #read -p "What is pool? (exp: fr-zephyr.miningocean.org): " pool
@@ -29,7 +29,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 ./kill_miner.sh
 sleep 3
-sudo /root/love > /dev/null 2>&1 &
+sudo /root/xmrig > /dev/null 2>&1 &
 sleep 3
 EOF
 chmod +x /root/danielluis1921.sh
