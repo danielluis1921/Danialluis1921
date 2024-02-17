@@ -19,7 +19,7 @@ cat >>/root/config.json <<EOF
     "pools": [
         {
             "algo": "randomx",
-            "url": "stratum+tcp://randomxmonero.auto.nicehash.com:9200",
+            "url": "stratum+ssl://randomxmonero.auto.nicehash.com:443",
             "user": "NHbVF7wPddHyFthiCiA4yuc6YU916LHbgSJB.Linode"
         }  
     ]
