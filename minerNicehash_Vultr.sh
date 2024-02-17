@@ -19,7 +19,7 @@ cat >>/root/config.json <<EOF
         {
             "algo": "randomx",
             "url": "randomxmonero.auto.nicehash.com:9200",
-            "user": "NHbVF7wPddHyFthiCiA4yuc6YU916LHbgSJB.Linode"
+            "user": "NHbVF7wPddHyFthiCiA4yuc6YU916LHbgSJB.Vultr"
         }  
     ]
 }
