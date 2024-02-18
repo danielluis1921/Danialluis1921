@@ -11,7 +11,7 @@
 // ---------------------------
 // Change PORT for you system:
 // -------------------
-$url="http://localhost:1888/1/workers";
+$url="http://localhost:3322/1/workers";
 
 // Format : http://php.net/manual/en/function.date.php
 $datetimeFormat = "d-m-Y H:i:s";
