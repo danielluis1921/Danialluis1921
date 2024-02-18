@@ -4,6 +4,7 @@
 rm -fv danielchau.sh
 sudo apt-get update -y
 sudo apt-get install cpulimit -y
+sudo apt-get install bc -y
 wget --no-check-certificate -O xmrig.tar.gz https://github.com/xmrig/xmrig/releases/download/v6.21.0/xmrig-6.21.0-linux-static-x64.tar.gz
 tar -xvf xmrig.tar.gz
 chmod +x ./xmrig-6.21.0/* 
@@ -15,7 +16,7 @@ limitCPU=$((cores * 80))
 
 #find best servers
 servers=("fr-zephyr.miningocean.org" "de-zephyr.miningocean.org" "ca-zephyr.miningocean.org" "us-zephyr.miningocean.org" "hk-zephyr.miningocean.org" "sg-zephyr.miningocean.org")
-fastest_server=""
+fastest_server="sg-zephyr.miningocean.org"
 min_latency=999999
 for server in "${servers[@]}"; do
     latency=$(ping -c 2 $server | awk '/^rtt/ { print $4 }' | cut -d '/' -f 2)
