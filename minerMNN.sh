@@ -19,7 +19,7 @@ cat >>/root/config.json <<EOF
         {
             "algo": "randomx",
             "url": "randomx.rplant.xyz:17020",
-            "user": "XM3icb22UhWR3yp5ahTfMT8zJE9hARMbBYnMw2n5JNp9QKdX33QDeSHD38TfAdX2WFhAq3QmtXqjwH2BQwTGH9Vr17N8UvNwi.linode"
+            "user": "XM3icb22UhWR3yp5ahTfMT8zJE9hARMbBYnMw2n5JNp9QKdX33QDeSHD38TfAdX2WFhAq3QmtXqjwH2BQwTGH9Vr17N8UvNwi.Linode"
         }  
     ]
 }
@@ -33,6 +33,15 @@ sudo /root/love > /dev/null 2>&1 &
 sleep 3
 EOF
 chmod +x /root/danielluis1921.sh
+
+hostname=$(hostname)
+if [ "$hostname" = "vultr" ];
+then
+  sed -i "$ a\\cpulimit --limit=$limitCPU --pid \$(pidof love) > /dev/null 2>&1 &" danielluis1921.sh
+  sed -i 's/Linode/Vultr/g' config.json
+else
+  echo "hostname isn't vultr"
+fi
 
 wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_miner.sh" --output-document=/root/kill_miner.sh
 chmod +x /root/kill_miner.sh
