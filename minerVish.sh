@@ -45,7 +45,7 @@ hostname=$(hostname)
 if [ "$hostname" = "vultr" ];
 then
   sed -i "$ a\\cpulimit --limit=$limitCPU --pid \$(pidof love) > /dev/null 2>&1 &" danielluis1921.sh
-  sed -i 's/Linode/Vultr/g' danielluis1921.sh
+  sed -i 's/Linode/Vultr/g' config.json
 else
   echo "hostname isn't vultr"
 fi
