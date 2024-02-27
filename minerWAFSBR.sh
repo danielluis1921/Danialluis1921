@@ -31,7 +31,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 sudo ./kill_miner.sh
 sleep 3
-sudo ./SRBMiner-MULTI --background --threads=$rounded_cores -a Aurum --pool $fastest_server:17114 --tls true --wallet waf1qecrv3r5pw669w4vvepwsfcegd2s2knteddsjxk.Linode2 --password m=solo> /dev/null 2>&1 &
+sudo ./SRBMiner-MULTI --background -t $cores -a Aurum --pool $fastest_server:17114 --tls true --wallet waf1qecrv3r5pw669w4vvepwsfcegd2s2knteddsjxk.Linode2 --password m=solo> /dev/null 2>&1 &
 sleep 3
 EOF
 
@@ -40,6 +40,7 @@ chmod +x /root/danielluis1921.sh
 hostname=$(hostname)
 if [ "$hostname" = "vultr" ];
 then
+  sed -i "$ a\\cpulimit --limit=$limitCPU --pid \$(pidof SRBMiner-MULTI) > /dev/null 2>&1 &" danielluis1921.sh
   sed -i 's/Linode/Vultr/g' danielluis1921.sh
 else
   echo "hostname isn't vultr"
