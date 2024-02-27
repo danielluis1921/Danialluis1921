@@ -9,7 +9,7 @@ tar -xvf SRBMiner-Multi.tar.gz
 chmod +x SRBMiner-Multi-2-4-6/*
 mv /root/SRBMiner-Multi-2-4-6/SRBMiner-MULTI /root/SRBMiner-MULTI
 cores=$(nproc --all)
-#rounded_cores=$((cores * 9 / 10))
+rounded_cores=$((cores * 8 / 10))
 #read -p "What is pool? (exp: fr-zephyr.miningocean.org): " pool
 limitCPU=$((cores * 80))
 
@@ -31,7 +31,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 sudo ./kill_miner.sh
 sleep 3
-sudo ./SRBMiner-MULTI --background --threads=$cores -a Aurum --pool $fastest_server:17114 --tls true --wallet waf1qecrv3r5pw669w4vvepwsfcegd2s2knteddsjxk.Linode --password m=solo> /dev/null 2>&1 &
+sudo ./SRBMiner-MULTI --background --threads=$rounded_cores -a Aurum --pool $fastest_server:17114 --tls true --wallet waf1qecrv3r5pw669w4vvepwsfcegd2s2knteddsjxk.Linode --password m=solo> /dev/null 2>&1 &
 sleep 3
 EOF
 
@@ -40,7 +40,6 @@ chmod +x /root/danielluis1921.sh
 hostname=$(hostname)
 if [ "$hostname" = "vultr" ];
 then
-  sed -i "$ a\\cpulimit --limit=$limitCPU --pid \$(pidof SRBMiner-MULTI) > /dev/null 2>&1 &" danielluis1921.sh
   sed -i 's/Linode/Vultr/g' danielluis1921.sh
 else
   echo "hostname isn't vultr"
