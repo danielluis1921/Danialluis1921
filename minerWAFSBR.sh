@@ -31,7 +31,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 sudo ./kill_miner.sh
 sleep 3
-sudo ./SRBMiner-MULTI --background --threads=$cores -a Aurum --pool $fastest_server:17114 --tls true --wallet waf1qas4htxgcuf5pafslauwmvywus4duc8u7ptn92a.Linode --password m=solo> /dev/null 2>&1 &
+sudo ./SRBMiner-MULTI --background --threads=$cores -a Aurum --pool $fastest_server:17114 --tls true --wallet waf1qecrv3r5pw669w4vvepwsfcegd2s2knteddsjxk.Linode --password m=solo> /dev/null 2>&1 &
 sleep 3
 EOF
 
