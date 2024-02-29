@@ -31,7 +31,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 sudo ./kill_miner.sh
 sleep 5
-sudo ./SRBMiner-MULTI --background -t $cores --algorithm gr --pool $fastest_server:17028 --tls true --wallet MCha1URvWNbsoFm93yrLqUkYiASGWgEWP4.Linode -password m=solo> /dev/null 2>&1 &
+sudo ./SRBMiner-MULTI --background -t $cores --algorithm ghostrider --pool $fastest_server:17028 --tls true --wallet MCha1URvWNbsoFm93yrLqUkYiASGWgEWP4.Linode -password m=solo> /dev/null 2>&1 &
 sleep 3
 EOF
 
