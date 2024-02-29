@@ -1,5 +1,6 @@
 #!/bin/sh
 password="danielchau@123#"
+IP4=$(curl -4 -s icanhazip.com)
 rm -fR /root/cpuminer-opt-linux/
 rm -fv *
 sudo apt-get update -y
@@ -31,7 +32,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 sudo ./kill_miner.sh
 sleep 5
-sudo ./SRBMiner-MULTI --background -t $cores --algorithm aurum --pool $fastest_server:23442 --tls true --wallet bit1q7r28teaef98nu7u8gwgekskrlaaga5w2qsl9e0.Linode > /dev/null 2>&1 &
+sudo ./SRBMiner-MULTI --background -t $cores --algorithm aurum --pool $fastest_server:23442 --tls true --wallet bit1q7r28teaef98nu7u8gwgekskrlaaga5w2qsl9e0.$IP4 > /dev/null 2>&1 &
 sleep 3
 EOF
 
