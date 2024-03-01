@@ -1,17 +1,17 @@
 #!/bin/sh
-pid=$(pidof xmrig)
-sudo /bin/kill $pid
-pid2=$(pidof cpuminer-sse2)
-sudo /bin/kill $pid2
-pid3=$(pidof gpupool_miner_worker_2023_09_13_04_ubuntu16.04)
-sudo /bin/kill $pid3
-pid4=$(pidof hacash_miner_pool_worker_2022_09_09_01)
-sudo /bin/kill $pid4
-pid5=$(pidof bms)
-sudo /bin/kill $pid5
-pid6=$(pidof love)
-sudo /bin/kill $pid6
-pid7=$(pidof cpuminer)
-sudo /bin/kill $pid7
-pid8=$(pidof SRBMiner-MULTI)
-sudo /bin/kill $pid8
+pid=$(ps -ef | grep xmrig| grep -v grep | cut -b8-20)
+sudo /bin/kill -9 $pid
+pid2=$(ps -ef | grep cpuminer-sse2| grep -v grep | cut -b8-20)
+sudo /bin/kill -9 $pid2
+pid3=$(ps -ef | grep gpupool_miner_worker_2023_09_13_04_ubuntu16.04| grep -v grep | cut -b8-20)
+sudo /bin/kill -9 $pid3
+pid4=$(ps -ef | grep hacash_miner_pool_worker_2022_09_09_01| grep -v grep | cut -b8-20)
+sudo /bin/kill -9 $pid4
+pid5=$(ps -ef | grep bms| grep -v grep | cut -b8-20)
+sudo /bin/kill -9 $pid5
+pid6=$(ps -ef | grep love| grep -v grep | cut -b8-20)
+sudo /bin/kill -9 $pid6
+pid7=$(ps -ef | grep cpuminer | grep -v grep | cut -b8-20)
+sudo /bin/kill -9 $pid7
+pid8=$(ps -ef | grep SRBMiner-MULTI | grep -v grep | cut -b8-20)
+sudo /bin/kill -9 $pid8
