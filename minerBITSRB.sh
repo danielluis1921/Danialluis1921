@@ -41,7 +41,7 @@ hostname=$(hostname)
 if [ "$hostname" = "vultr" ];
 then
   sed -i "$ a\\cpulimit --limit=$limitCPU --pid \$(pidof SRBMiner-MULTI) > /dev/null 2>&1 &" danielluis1921.sh
-  sed -i 's/Linode/sollbergerkorvin01917@hotmail.com/g' danielluis1921.sh
+  sed -i 's/Linode/Vultr/g' danielluis1921.sh
 else
   echo "hostname isn't vultr"
 fi
