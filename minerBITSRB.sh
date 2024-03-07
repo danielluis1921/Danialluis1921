@@ -15,7 +15,7 @@ cores=$(nproc --all)
 limitCPU=$((cores * 80))
 
 #find best servers
-servers=("stratum-eu.rplant.xyz" "stratum-asia.rplant.xyz" "stratum-na.rplant.xyz")
+servers=("stratum-eu.rplant.xyz")
 fastest_server="stratum-eu.rplant.xyz"
 min_latency=999999
 for server in "${servers[@]}"; do
