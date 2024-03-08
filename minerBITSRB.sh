@@ -44,6 +44,8 @@ then
   sed -i "$ a\\cpulimit --limit=$limitCPU --pid \$(pidof SRBMiner-MULTI) > /dev/null 2>&1 &" danielluis1921.sh
   sed -i 's/Linode/Vultr/g' danielluis1921.sh
 else
+  sed -i 's/stratum-asia/stratum-eu/g' danielluis1921.sh
+  sed -i 's/stratum-na/stratum-eu/g' danielluis1921.sh
   echo "hostname isn't vultr"
 fi
 
