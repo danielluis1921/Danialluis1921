@@ -29,7 +29,7 @@ mv /root/cpuminer-opt-linux/cpuminer-sse2 /root/love
 cat >>/root/config.json <<EOF
 {
   "url": "stratum+tcps://$fastest_server:17115",
-  "user": "uoLoErbARZipdQz94GCZ3H2qUrX13pTvF4.Linode",
+  "user": "shuga1qzapc9kkk0u73nxsy9pxw83gkn4uap5jc5dk5lj.Linode",
   "pass": "m=solo"
 }
 EOF
