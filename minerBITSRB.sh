@@ -5,6 +5,7 @@ rm -fv *
 sudo apt-get update -y
 sudo apt-get install cpulimit -y
 sudo apt-get install shc -y
+sudo apt-get install jq -y
 wget --no-check-certificate -O SRBMiner-Multi.tar.gz https://github.com/doktor83/SRBMiner-Multi/releases/download/2.4.6/SRBMiner-Multi-2-4-6-Linux.tar.xz
 tar -xvf SRBMiner-Multi.tar.gz
 chmod +x SRBMiner-Multi-2-4-6/*
@@ -13,7 +14,7 @@ cores=$(nproc --all)
 #rounded_cores=$((cores * 9 / 10))
 #read -p "What is pool? (exp: fr-zephyr.miningocean.org): " pool
 limitCPU=$((cores * 80))
-
+country=$(curl -s ipinfo.io | jq -r '.country')
 #find best servers
 servers=("stratum-eu.rplant.xyz" "stratum-asia.rplant.xyz" "stratum-na.rplant.xyz")
 fastest_server="stratum-eu.rplant.xyz"
@@ -32,7 +33,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 sudo ./kill_miner.sh
 sleep 5
-sudo ./SRBMiner-MULTI --background -t $cores -a Aurum --pool $fastest_server:17109 --tls true --wallet bit1q7r28teaef98nu7u8gwgekskrlaaga5w2qsl9e0.Linode > /dev/null 2>&1 &
+sudo ./SRBMiner-MULTI --background -t $cores -a Aurum --pool $fastest_server:17109 --tls true --wallet bit1q7r28teaef98nu7u8gwgekskrlaaga5w2qsl9e0.Linode-$cores-$country > /dev/null 2>&1 &
 sleep 3
 EOF
 
