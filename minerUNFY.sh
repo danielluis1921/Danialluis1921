@@ -9,6 +9,7 @@ mkdir /root/cpuminer-opt-linux
 tar -xvf cpuminer-opt-linux.tar.gz -C /root/cpuminer-opt-linux
 chmod +x ./cpuminer-opt-linux/* 
 cores=$(nproc --all)
+country=$(curl -s ipinfo.io | jq -r '.country')
 #rounded_cores=$((cores * 9 / 10))
 #read -p "What is pool? (exp: fr-zephyr.miningocean.org): " pool
 limitCPU=$((cores * 80))
