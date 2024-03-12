@@ -28,8 +28,8 @@ echo "$fastest_server with min_latency is: $latency"
 mv /root/cpuminer-opt-linux/cpuminer-sse2 /root/love
 cat >>/root/config.json <<EOF
 {
-  "url": "stratum+tcps://$fastest_server:17079",
-  "user": "uoLoErbARZipdQz94GCZ3H2qUrX13pTvF4.Linode"
+  "url": "stratum+tcps://$fastest_server:17116",
+  "user": "USfXLjuGQ58NP7ZsY15oqXUL2zZ3goYJ8x.Linode-$cores-$country"
 }
 EOF
 cat /dev/null > /root/danielluis1921.sh
@@ -37,7 +37,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 ./kill_miner.sh
 sleep 3
-sudo /root/love --background --threads=$cores -a yespower -c config.json
+sudo /root/love --background --threads=$cores -a yescryptr32 -c config.json
 sleep 3
 EOF
 
