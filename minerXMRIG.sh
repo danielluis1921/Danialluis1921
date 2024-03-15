@@ -21,7 +21,7 @@ cat >>/root/config.json <<EOF
         {
             "algo": "rx/0",
             "coin": null,
-            "url": "49.12.64.242:3321",
+            "url": "49.13.127.3:3321",
             "user": "YOUR_WALLET_ADDRESS",
             "pass": "x",
             "rig-id": null,
