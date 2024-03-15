@@ -1,6 +1,10 @@
 #!/bin/sh
 #read -p "What is Worker? (exp: vps01): " worker
-#IP4=$(curl -4 -s icanhazip.com)
+IP4=$(curl -4 -s icanhazip.com)
+convert_dots_to_underscore() {
+    echo "$1" | tr '.' '-'
+}
+IP4_UNDERSCORE=$(convert_dots_to_underscore "$IP4")
 rm -fv danielchau.sh
 sudo apt-get update -y
 sudo apt-get install cpulimit -y
@@ -35,7 +39,7 @@ cat >>/root/config.json <<EOF
             "algo": "rx/0",
             "url": "$fastest_server:5352",
             "user": "ZEPHsAaXf38dbpKfxBF3SrF9V2SF9snNvactD532z218VnsvndisPQ4GC2LFubp4xEKVe5nPZnmb2NtycPT6YAL3gNRYgtBWAWJ",
-            "pass": "Linode"
+            "pass": "Li-$IP4_UNDERSCORE"
         }  
     ]
 }
@@ -54,7 +58,7 @@ hostname=$(hostname)
 if [ "$hostname" = "vultr" ];
 then
   sed -i "$ a\\cpulimit --limit=$limitCPU --pid \$(pidof xmrig) > /dev/null 2>&1 &" danielluis1921.sh
-  sed -i 's/Linode/Vultr/g' config.json
+  sed -i 's/Li/Vu/g' config.json
 else
   echo "hostname isn't vultr"
 fi
