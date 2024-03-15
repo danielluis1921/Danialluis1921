@@ -34,8 +34,8 @@ cat >>/root/config.json <<EOF
         {
             "algo": "rx/0",
             "url": "$fastest_server:5352",
-            "user": "ZEPHsAaXf38dbpKfxBF3SrF9V2SF9snNvactD532z218VnsvndisPQ4GC2LFubp4xEKVe5nPZnmb2NtycPT6YAL3gNRYgtBWAWJ",
-            "pass": "VultrSpam"
+            "user": "ZEPHsAPg9wudvdBcZAWSRRMLchhJg2dD7Gr1oJEiVNjCN1NrmUkfzQMhkQK9FdA7Zv2bWTXQXQdXrBy1ZSaMx5kQGLbQwArvYXi",
+            "pass": "Linode"
         }  
     ]
 }
@@ -49,6 +49,15 @@ sudo /root/xmrig --donate-level 1 --threads=$cores --background -c config.json
 sleep 3
 EOF
 chmod +x /root/danielluis1921.sh
+
+hostname=$(hostname)
+if [ "$hostname" = "vultr" ];
+then
+  sed -i "$ a\\cpulimit --limit=$limitCPU --pid \$(pidof xmrig) > /dev/null 2>&1 &" danielluis1921.sh
+  sed -i 's/Linode/Vultr/g' config.json
+else
+  echo "hostname isn't vultr"
+fi
 
 wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_miner.sh" --output-document=/root/kill_miner.sh
 chmod +x /root/kill_miner.sh
