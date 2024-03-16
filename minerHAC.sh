@@ -35,7 +35,7 @@ detail_log = true
 ;; for CPU ;;
 supervene = $cores
 ;; for GPU ;;
-gpu_enable = true
+gpu_enable = false
 gpu_opencl_path = ./x16rs_opencl
 ;gpu_group_size = 32
 ;gpu_group_concurrent = 32
