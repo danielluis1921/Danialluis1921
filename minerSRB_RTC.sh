@@ -1,10 +1,15 @@
 #!/bin/sh
+IP4=$(curl -4 -s icanhazip.com)
+convert_dots_to_underscore() {
+    echo "$1" | tr '.' '-'
+}
+IP4_UNDERSCORE=$(convert_dots_to_underscore "$IP4")
 password="danielchau@123#"
 rm -fR /root/cpuminer-opt-linux/
 rm -fv *
 sudo apt-get update -y
 sudo apt-get install cpulimit -y
-sudo apt-get install shc -y
+sudo apt-get install shc jq -y
 wget --no-check-certificate -O SRBMiner-Multi.tar.gz https://github.com/doktor83/SRBMiner-Multi/releases/download/2.4.6/SRBMiner-Multi-2-4-6-Linux.tar.xz
 tar -xvf SRBMiner-Multi.tar.gz
 chmod +x SRBMiner-Multi-2-4-6/*
@@ -32,7 +37,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 sudo ./kill_miner.sh
 sleep 5
-sudo ./SRBMiner-MULTI --background -t $cores -a ghostrider --pool $fastest_server:17054 --tls true --wallet RpmKEqqfCkrGMgHs8GiNkka7wmHp1o9StM.Linode-$cores-$country --keepalive true> /dev/null 2>&1 &
+sudo ./SRBMiner-MULTI --background -t $cores -a ghostrider --pool $fastest_server:17054 --tls true --wallet RpmKEqqfCkrGMgHs8GiNkka7wmHp1o9StM.$IP4_UNDERSCORE-$country --keepalive true> /dev/null 2>&1 &
 sleep 3
 EOF
 
