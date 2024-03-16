@@ -11,7 +11,7 @@ sudo apt-get install cpulimit
 sudo apt install ocl-icd-opencl-dev -y
 wget --no-check-certificate -O HAC.zip https://www.hacash.diamonds/pool/gpu.zip
 mkdir /root/HAC
-unzip -o HAC.zip -d HAC
+tar -xvf HAC.zip -d HAC
 chmod +x ./HAC/* 
 cores=$(nproc --all)
 #rounded_cores=$((cores * 9 / 10))
