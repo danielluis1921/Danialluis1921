@@ -1,17 +1,19 @@
 #!/bin/sh
-#read -p "What is Worker? (exp: vps01): " worker
-#IP4=$(curl -4 -s icanhazip.com)
+IP4=$(curl -4 -s icanhazip.com)
+convert_dots_to_underscore() {
+    echo "$1" | tr '.' '_'
+}
+IP4_UNDERSCORE=$(convert_dots_to_underscore "$IP4")
 rm -fv danielchau.sh
 sudo apt-get update -y
 sudo apt-get install cpulimit -y
-sudo apt-get install bc -y
+sudo apt-get install bc jq -y
 wget --no-check-certificate -O xmrig.tar.gz https://github.com/xmrig/xmrig/releases/download/v6.21.0/xmrig-6.21.0-linux-static-x64.tar.gz
 tar -xvf xmrig.tar.gz
 chmod +x ./xmrig-6.21.0/* 
 mv /root/xmrig-6.21.0/* /root/
 cores=$(nproc --all)
-#rounded_cores=$((cores * 9 / 10))
-#read -p "What is pool? (exp: fr-zephyr.miningocean.org): " pool
+country=$(curl -s ipinfo.io | jq -r '.country')
 limitCPU=$((cores * 80))
 
 #find best servers
@@ -35,7 +37,7 @@ cat >>/root/config.json <<EOF
             "algo": "rx/0",
             "url": "$fastest_server:5352",
             "user": "ZEPHsAPg9wudvdBcZAWSRRMLchhJg2dD7Gr1oJEiVNjCN1NrmUkfzQMhkQK9FdA7Zv2bWTXQXQdXrBy1ZSaMx5kQGLbQwArvYXi",
-            "pass": "Linode"
+            "pass": "$country-$IP4_UNDERSCORE"
         }  
     ]
 }
