@@ -9,9 +9,10 @@ rm -fR /root/HAC
 sudo apt-get update -y
 sudo apt-get install cpulimit
 sudo apt install ocl-icd-opencl-dev -y
+apt install unzip -y
 wget --no-check-certificate -O HAC.zip https://www.hacash.diamonds/pool/gpu.zip
 mkdir /root/HAC
-tar -xvf HAC.zip -d HAC
+unzip -o HAC.zip -d HAC
 chmod +x ./HAC/* 
 cores=$(nproc --all)
 #rounded_cores=$((cores * 9 / 10))
