@@ -25,24 +25,11 @@ sudo /root/HAC/gpupool_miner_worker_2023_09_13_04_ubuntu16.04 > /dev/null 2>&1 &
 EOF
 chmod +x /root/danielchau.sh
 
-cat /dev/null > /root/HAC/minerworker.config.ini
-cat >>/root/HAC/minerworker.config.ini <<EOF
-
+cat /dev/null > /root/HAC/poolworker.config.ini
+cat >>/root/HAC/poolworker.config.ini <<EOF
+pool = 182.92.163.225:3339
 rewards = 13xymHri7PipAceBqBJ7N32XMvsqhN7DYx
-detail_log = true
-
-;; for CPU ;;
 supervene = $cores
-
-;; for GPU ;;
-gpu_enable = false
-gpu_opencl_path = ./root/HAC/x16rs_opencl
-;gpu_group_size = 32
-;gpu_group_concurrent = 32
-;gpu_item_loop = 32
-;gpu_span_time = 5.0 ; seconds
-;gpu_platform_match = 
-
 EOF
 
 wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_miner.sh" --output-document=/root/kill_miner.sh
