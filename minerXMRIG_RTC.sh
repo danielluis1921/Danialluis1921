@@ -37,8 +37,7 @@ cat >>/root/config.json <<EOF
         {
             "algo": "ghostrider",
             "url": "$fastest_server:17054",
-            "user": "RpmKEqqfCkrGMgHs8GiNkka7wmHp1o9StM",
-            "pass": "$IP4_UNDERSCORE-$country"
+            "user": "RpmKEqqfCkrGMgHs8GiNkka7wmHp1o9StM.$IP4_UNDERSCORE-$country"
         }  
     ]
 }
