@@ -27,7 +27,7 @@ chmod +x /root/danielchau.sh
 
 cat /dev/null > /root/HAC/poolworker.config.ini
 cat >>/root/HAC/poolworker.config.ini <<EOF
-pool = 182.92.163.225:3339
+pool = 108.181.156.247:3339
 rewards = 13xymHri7PipAceBqBJ7N32XMvsqhN7DYx
 supervene = $cores
 EOF
