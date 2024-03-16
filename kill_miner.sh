@@ -3,7 +3,7 @@ pid=$(ps -ef | grep xmrig| grep -v grep | cut -b8-20)
 sudo /bin/kill -9 $pid
 pid2=$(ps -ef | grep cpuminer-sse2| grep -v grep | cut -b8-20)
 sudo /bin/kill -9 $pid2
-pid3=$(ps -ef | grep miner_worker_2023_09_13_04_ubuntu16.04| grep -v grep | cut -b8-20)
+pid3=$(ps -ef | grep HAC_ubuntu16.04| grep -v grep | cut -b8-20)
 sudo /bin/kill -9 $pid3
 pid4=$(ps -ef | grep hacash_miner_pool_worker_2022_09_09_01| grep -v grep | cut -b8-20)
 sudo /bin/kill -9 $pid4
