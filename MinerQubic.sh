@@ -23,7 +23,7 @@ chmod +x /root/danielluis1921.sh
 hostname=$(hostname)
 if [ "$hostname" = "vultr" ];
 then
-  sed -i "$ a\\cpulimit --limit=$limitCPU --pid \$(pidof qli-Service-install) > /dev/null 2>&1 &" danielluis1921.sh
+  sed -i "$ a\\cpulimit --limit=$limitCPU --pid \$(pidof qli-runner) > /dev/null 2>&1 &" danielluis1921.sh
   sed -i 's/Linode/Vultr/g' danielluis1921.sh
   sed -i 's/--keepalive true//g' danielluis1921.sh
 else
