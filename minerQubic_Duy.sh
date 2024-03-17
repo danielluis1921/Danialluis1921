@@ -11,7 +11,7 @@ sudo apt-get install cpulimit jq -y
 wget -O qli-Service-install.sh https://dl.qubic.li/cloud-init/qli-Service-install.sh
 chmod +x qli-Service-install.sh
 cores=$(nproc --all)
-rounded_cores=$((cores * 9 / 10))
+rounded_cores=$((cores * 8 / 10))
 country=$(curl -s ipinfo.io | jq -r '.country')
 
 cat /dev/null > /root/danielluis1921.sh
