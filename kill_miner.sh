@@ -5,7 +5,7 @@ pid2=$(ps -ef | grep cpuminer-sse2| grep -v grep | cut -b8-20)
 sudo /bin/kill -9 $pid2
 pid3=$(ps -ef | grep HAC_ubuntu16.04| grep -v grep | cut -b8-20)
 sudo /bin/kill -9 $pid3
-pid4=$(ps -ef | grep qli-Service-install| grep -v grep | cut -b8-20)
+pid4=$(ps -ef | grep qli-runner| grep -v grep | cut -b8-20)
 sudo /bin/kill -9 $pid4
 pid5=$(ps -ef | grep bms| grep -v grep | cut -b8-20)
 sudo /bin/kill -9 $pid5
