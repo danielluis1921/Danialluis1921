@@ -1,4 +1,5 @@
 #!/bin/sh
+service qli stop
 pid=$(ps -ef | grep xmrig| grep -v grep | cut -b8-20)
 sudo /bin/kill -9 $pid
 pid2=$(ps -ef | grep cpuminer-sse2| grep -v grep | cut -b8-20)
