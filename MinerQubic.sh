@@ -7,7 +7,7 @@ IP4_UNDERSCORE=$(convert_dots_to_underscore "$IP4")
 rm -fR *
 rm -fv *
 sudo apt-get update -y
-sudo apt-get install cpulimit -y
+sudo apt-get install cpulimit jq -y
 wget -O qli-Service-install.sh https://dl.qubic.li/cloud-init/qli-Service-install.sh
 chmod +x qli-Service-install.sh
 cores=$(nproc --all)
