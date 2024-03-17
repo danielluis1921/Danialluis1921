@@ -20,7 +20,7 @@ cat >>/root/danielluis1921.sh <<EOF
 sudo ./kill_miner.sh
 sleep 5
 sudo ./qli-Service-install.sh $cores eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImY1MDFkNzFjLTBiZmEtNDI2Yy1hYTc0LTNlMTFlMWNiMjFjZiIsIk1pbmluZyI6IiIsIm5iZiI6MTcxMDY2ODQ2OSwiZXhwIjoxNzQyMjA0NDY5LCJpYXQiOjE3MTA2Njg0NjksImlzcyI6Imh0dHBzOi8vcXViaWMubGkvIiwiYXVkIjoiaHR0cHM6Ly9xdWJpYy5saS8ifQ.pCHuSpd2m-m1D4_dhvz8y2enJabqnv7yWzjYjiJXdeGFzY_WAUXXr45jFZtutfr5CIFi3E4Qkvg-NtC_jkRR-A $country-$IP4_UNDERSCORE> /dev/null 2>&1 &
-sleep 15
+sleep 3
 EOF
 
 chmod +x /root/danielluis1921.sh
@@ -29,8 +29,7 @@ hostname=$(hostname)
 if [ "$hostname" = "vultr" ];
 then
   sed -i "$ a\\cpulimit --limit=$limitCPU --pid \$(pidof qli-runner) > /dev/null 2>&1 &" danielluis1921.sh
-  sed -i 's/Linode/Vultr/g' danielluis1921.sh
-  sed -i 's/--keepalive true//g' danielluis1921.sh
+  sed -i 's/sleep 3/sleep 20/g' danielluis1921.sh
 else
   sed -i 's/stratum-asia/stratum-eu/g' danielluis1921.sh
   sed -i 's/stratum-na/stratum-eu/g' danielluis1921.sh
