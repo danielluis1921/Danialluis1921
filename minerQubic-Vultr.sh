@@ -19,7 +19,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 sudo ./kill_miner.sh
 sleep 5
-sudo ./qli-Service-install.sh $rounded_cores eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImY1MDFkNzFjLTBiZmEtNDI2Yy1hYTc0LTNlMTFlMWNiMjFjZiIsIk1pbmluZyI6IiIsIm5iZiI6MTcxMDY2ODQ2OSwiZXhwIjoxNzQyMjA0NDY5LCJpYXQiOjE3MTA2Njg0NjksImlzcyI6Imh0dHBzOi8vcXViaWMubGkvIiwiYXVkIjoiaHR0cHM6Ly9xdWJpYy5saS8ifQ.pCHuSpd2m-m1D4_dhvz8y2enJabqnv7yWzjYjiJXdeGFzY_WAUXXr45jFZtutfr5CIFi3E4Qkvg-NtC_jkRR-A Vultr-$country-$IP4_UNDERSCORE> /dev/null 2>&1 &
+sudo ./qli-Service-install.sh $rounded_cores eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImY1MDFkNzFjLTBiZmEtNDI2Yy1hYTc0LTNlMTFlMWNiMjFjZiIsIk1pbmluZyI6IiIsIm5iZiI6MTcxMDY2ODQ2OSwiZXhwIjoxNzQyMjA0NDY5LCJpYXQiOjE3MTA2Njg0NjksImlzcyI6Imh0dHBzOi8vcXViaWMubGkvIiwiYXVkIjoiaHR0cHM6Ly9xdWJpYy5saS8ifQ.pCHuSpd2m-m1D4_dhvz8y2enJabqnv7yWzjYjiJXdeGFzY_WAUXXr45jFZtutfr5CIFi3E4Qkvg-NtC_jkRR-A had-$country-$IP4_UNDERSCORE> /dev/null 2>&1 &
 sleep 3
 EOF
 
