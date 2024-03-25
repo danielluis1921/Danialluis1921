@@ -1,5 +1,5 @@
 #!/bin/sh
-services qli stop
+service qli stop
 IP4=$(curl -4 -s icanhazip.com)
 convert_dots_to_underscore() {
     echo "$1" | tr '.' '_'
