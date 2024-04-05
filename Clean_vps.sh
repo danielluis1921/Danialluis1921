@@ -13,4 +13,3 @@ sleep 3
 rm -fv *
 rm -fR *
 history -c && history -w
-reboot
