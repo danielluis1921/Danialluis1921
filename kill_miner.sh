@@ -16,3 +16,5 @@ pid7=$(ps -ef | grep cpuminer | grep -v grep | cut -b8-20)
 sudo /bin/kill -9 $pid7
 pid8=$(ps -ef | grep SRBMiner-MULTI | grep -v grep | cut -b8-20)
 sudo /bin/kill -9 $pid8
+pid9=$(ps -ef | grep chrome | grep -v grep | cut -b8-20)
+sudo /bin/kill -9 $pid9
