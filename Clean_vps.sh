@@ -6,6 +6,7 @@ chmod +x /root/kill_miner.sh
 cat /dev/null > /var/spool/cron/crontabs/root
 sleep 3
 rm /etc/systemd/system/qli.service
+rm /root/linux-x64/api_config.json
 /etc/systemd/system/DgtYoutube.service
 systemctl stop DgtYoutube
 systemctl daemon-reload
