@@ -11,6 +11,14 @@ exec gnome-session &
 EOF
 
 chmod +x ~/.vnc/xstartup
+
+echo -e "123123\n123123\nn" | vncpasswd -f > ~/.vnc/passwd
+chmod 600 ~/.vnc/passwd
+
 vncserver :1 -geometry 1920x1080 -depth 24
 sudo ufw allow 5901/tcp
 sudo ufw reload
+
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+sudo apt install -f -y
