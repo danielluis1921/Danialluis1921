@@ -2,7 +2,7 @@
 wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_miner.sh" --output-document=/root/kill_miner.sh
 chmod +x /root/kill_miner.sh
 ./kill_miner.sh
-#/bin/pkill -f "chrome"
+/bin/pkill -f "chrome"
 cat /dev/null > /var/spool/cron/crontabs/root
 sleep 3
 rm /etc/systemd/system/qli.service
