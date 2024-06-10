@@ -9,3 +9,4 @@ sudo chmod 777 generate-uam.sh
 ./generate-uam.sh 0ACD1805F5CF208F2F22AC0F716028B5694BD71D2594CB34C31B1487C7A12921 3
 
 sudo apt-get install w3m w3m-img
+#watch -n 1 "curl -s 127.0.0.1:17100 | w3m -T text/html"
