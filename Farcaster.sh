@@ -3,7 +3,7 @@ sudo apt-get install expect -y
 apt install tmux -y
 sudo apt update -y
 apt-get install ufw
-ufw enable 
+ufw enable -y
 ufw status
 ufw allow 22/tcp
 ufw allow 2281/tcp
