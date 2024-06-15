@@ -1,5 +1,15 @@
 #!/bin/bash
-sudo apt-get install screen -y
+sudo apt-get install expect -y
+apt install tmux -y
+sudo apt update -y
+apt-get install ufw
+ufw enable 
+ufw status
+ufw allow 22/tcp
+ufw allow 2281/tcp
+ufw allow 2282/tcp
+ufw allow 2283/tcp
+ufw allow ssh
 
 wget https://download.thehubble.xyz/bootstrap.sh
 
