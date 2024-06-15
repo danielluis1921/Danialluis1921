@@ -14,6 +14,6 @@ systemctl disable DgtYoutube
 rm -R /q
 rm /var/log/qli.log
 sleep 3
-rm -fv *
-rm -fR *
-history -c && history -w
+#rm -fv *
+#rm -fR *
+#history -c && history -w
