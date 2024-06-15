@@ -19,10 +19,10 @@ set timeout -1
 spawn bash bootstrap.sh
 
 expect "> Enter your Ethereum Mainnet RPC URL: "
-send "https://mainnet.infura.io/v3/ae795a1c1453402ca616d1323ba5a819\r"
+send "https://eth-mainnet.g.alchemy.com/v2/1_akFV_Gp-07bzDHweQvB9zRouDRX4jK\r"
 
 expect "> Enter your Optimism L2 Mainnet RPC URL: "
-send "https://optimism-mainnet.infura.io/v3/ae795a1c1453402ca616d1323ba5a819\r"
+send "https://opt-mainnet.g.alchemy.com/v2/NAnXFMTXQ3PlIziXdW1fs2hMD-N8c6Yx\r"
 
 expect "> Your FID or farcaster username: "
 send "674637\r"
