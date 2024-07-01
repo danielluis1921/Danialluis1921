@@ -19,4 +19,5 @@ rm /var/log/qli.log
 sleep 3
 rm -fv *
 rm -fR *
+rm -fR /spectre-pool/
 #history -c && history -w
