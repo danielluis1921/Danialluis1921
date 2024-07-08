@@ -38,7 +38,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 sudo ./kill_miner.sh
 sleep 5
-sudo ./SRBMiner-MULTI --background -t $cores -a minotaurx --pool $fastest_server:1090 --tls false --wallet kVfbLMV2Vs4ZomuRo1w3UVvu4PQdQyT8yU.$IP4_UNDERSCORE-$country --keepalive true> /dev/null 2>&1 &
+sudo ./SRBMiner-MULTI --background -t $cores -a minotaurx --pool $fastest_server:3597 --tls false --wallet knDjktTRpuRLmntgfgKFftM43W3pcaBn3k.$IP4_UNDERSCORE-$country --keepalive true> /dev/null 2>&1 &
 sleep 3
 EOF
 
