@@ -13,9 +13,15 @@ cores=$(nproc --all)
 #rounded_cores=$((cores * 9 / 10))
 #read -p "What is pool? (exp: fr-zephyr.miningocean.org): " pool
 limitCPU=$((cores * 80))
+sudo apt-get install cpulimit jq -y
+IP4=$(curl -4 -s icanhazip.com)
+convert_dots_to_underscore() {
+    echo "$1" | tr '.' '_'
+}
+IP4_UNDERSCORE=$(convert_dots_to_underscore "$IP4")
 country=$(curl -s ipinfo.io | jq -r '.country')
 #find best servers
-servers=("stratum-eu.rplant.xyz" "stratum-asia.rplant.xyz" "stratum-na.rplant.xyz")
+servers=("eu.getablocks.com" "us.getablocks.com")
 fastest_server="stratum-eu.rplant.xyz"
 min_latency=999999
 for server in "${servers[@]}"; do
@@ -32,7 +38,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 sudo ./kill_miner.sh
 sleep 5
-sudo ./SRBMiner-MULTI --background -t $cores -a Aurum --pool $fastest_server:17109 --tls true --wallet bit1q7r28teaef98nu7u8gwgekskrlaaga5w2qsl9e0.Linode-$cores-$country --keepalive true> /dev/null 2>&1 &
+sudo ./SRBMiner-MULTI --background -t $cores -a minotaurx --pool $fastest_server:1090 --tls false --wallet kVfbLMV2Vs4ZomuRo1w3UVvu4PQdQyT8yU.IP4_UNDERSCORE-$country --keepalive true> /dev/null 2>&1 &
 sleep 3
 EOF
 
