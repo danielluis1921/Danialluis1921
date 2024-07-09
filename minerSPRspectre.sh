@@ -16,4 +16,5 @@ wget https://github.com/spectre-project/spectre-miner/releases/download/v0.3.16/
 unzip spectre-miner-v0.3.16-linux-gnu-amd64.zip
 cd bin
 mv spectre-miner-v0.3.16-linux-gnu-amd64 spr
+cd
 screen -dmS spectre-pool spr/bin/spr -a spectre:qqql8x5z92zgnv0xxxp259h73vgqaksjv9dmhejeh834mku8q5wwu7qzy2pfv -s 172.105.239.139 -p 18110 -t 6
