@@ -8,6 +8,8 @@ convert_dots_to_underscore() {
 IP4_UNDERSCORE=$(convert_dots_to_underscore "$IP4")
 country=$(curl -s ipinfo.io | jq -r '.country')
 
+bash <(curl -s 'https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/Clean_vps.sh') 
+
 sudo apt-get update -y
 sudo apt-get install unzip
 mkdir spr
