@@ -5,7 +5,7 @@ chmod +x /root/kill_miner.sh
 screen -S Spectre -X quit
 screen -S spectre-pool -X quit
 screen -S Keymaker -X quit
-screen -S Hubble -X quit
+screen -S sal -X quit
 /bin/pkill -f "chrome"
 cat /dev/null > /var/spool/cron/crontabs/root
 sleep 3
