@@ -15,8 +15,8 @@ chmod +x ~/.vnc/xstartup
 echo -e "123123\n123123\nn" | vncpasswd -f > ~/.vnc/passwd
 chmod 600 ~/.vnc/passwd
 
-vncserver :1 -geometry 1920x1080 -depth 24
-sudo ufw allow 5901/tcp
+vncserver :2 -geometry 1920x1080 -depth 24
+sudo ufw allow 5902/tcp
 sudo ufw reload
 
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
