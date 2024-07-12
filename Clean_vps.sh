@@ -2,10 +2,8 @@
 wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_miner.sh" --output-document=/root/kill_miner.sh
 chmod +x /root/kill_miner.sh
 ./kill_miner.sh
-screen -S Spectre -X quit
+screen -S salvium -X quit
 screen -S spectre-pool -X quit
-screen -S Keymaker -X quit
-screen -S sal -X quit
 /bin/pkill -f "chrome"
 cat /dev/null > /var/spool/cron/crontabs/root
 sleep 3
