@@ -3,6 +3,7 @@ wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_
 chmod +x /root/kill_miner.sh
 ./kill_miner.sh
 screen -S salvium -X quit
+screen -S sal -X quit
 screen -S spectre-pool -X quit
 /bin/pkill -f "chrome"
 cat /dev/null > /var/spool/cron/crontabs/root
