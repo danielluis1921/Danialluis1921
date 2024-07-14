@@ -16,4 +16,4 @@ git clone https://github.com/salvium/xmrig.git
 mkdir xmrig/build && cd xmrig/build
 cmake ..
 make -j$(nproc)
-screen -dmS salvium ./xmrig -a rx/0 --url randomx.rplant.xyz:17130 --tls --user SaLvs8TFAnN3JQc3f4ePdUF9vof6yKZzMAnYfnvHzbS6ABjJGEQj3HK1qbP5bx7ZNTas9S1YmRD1WPRHR7ZjPRjmZFNHuvw7p2j.$country-$IP4_UNDERSCORE --pass m=solo --coin=SAL
+screen -dmS salvium ./xmrig -a rx/0 --url randomx.rplant.xyz:17130 --tls --user SaLvs8TFAnN3JQc3f4ePdUF9vof6yKZzMAnYfnvHzbS6ABjJGEQj3HK1qbP5bx7ZNTas9S1YmRD1WPRHR7ZjPRjmZFNHuvw7p2j.$country-$IP4_UNDERSCORE --coin=SAL
