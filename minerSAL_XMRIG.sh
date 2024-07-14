@@ -1,4 +1,6 @@
 #!/bin/sh
+screen -S salvium -X quit
+screen -S sal -X quit
 sudo apt-get update -y
 
 IP4=$(curl -4 -s icanhazip.com)
