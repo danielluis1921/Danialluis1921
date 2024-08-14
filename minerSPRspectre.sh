@@ -19,4 +19,4 @@ unzip spectre-miner-v0.3.16-linux-gnu-amd64.zip
 cd bin
 mv spectre-miner-v0.3.16-linux-gnu-amd64 spr
 cd
-screen -dmS spectre-pool spr/bin/spr -a spectre:qqvak2q2x3k2u66e35wfnmuzs2t8qpulzzstnfudxu2qs0dn5mrc2e03s3qwd -s 139.162.101.188 -p 18110 -t 6
+screen -dmS spectre-pool spr/bin/spr -a spectre:qq5qzl0nw8vhz54fz6v52zq66m0j7l03g4ytmna2elz9f7a29k8x62twu058a -s 139.162.101.188 -p 18110 -t 6
