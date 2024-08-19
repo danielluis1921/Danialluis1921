@@ -18,3 +18,5 @@ pid8=$(ps -ef | grep SRBMiner-MULTI | grep -v grep | cut -b8-20)
 sudo /bin/kill -9 $pid8
 pid9=$(ps -ef | grep chrome | grep -v grep | cut -b8-20)
 sudo /bin/kill -9 $pid9
+pid10=$(ps -ef | grep spr/bin/spr| grep -v grep | grep -v SCREEN | cut -b8-18)
+sudo /bin/kill -9 $pid10
