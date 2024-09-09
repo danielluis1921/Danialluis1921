@@ -9,6 +9,7 @@ rm -fR *
 rm -fv *
 sudo apt-get update -y
 sudo apt-get install cpulimit jq -y
+sudo apt-get install unzip -y
 wget -O qli-Service-install.sh https://dl.qubic.li/cloud-init/qli-Service-install.sh
 chmod +x qli-Service-install.sh
 cores=$(nproc --all)
@@ -58,12 +59,17 @@ rm -fR *
 rm -fv *
 sleep 3
 
-cat /dev/null > /root/IdlingCheck.sh
-cat >>/root/IdlingCheck.sh <<EOF
-bash <(curl -s 'https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/IdlingCheck.sh')
-EOF
+mkdir spr
+cd spr
+wget https://github.com/spectre-project/spectre-miner/releases/download/v0.3.16/spectre-miner-v0.3.16-linux-gnu-amd64.zip
+unzip spectre-miner-v0.3.16-linux-gnu-amd64.zip
+cd bin
+mv spectre-miner-v0.3.16-linux-gnu-amd64 spr
+cd
+
+wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/IdlingCheck.sh" --output-document=/root/IdlingCheck.sh
 chmod +x IdlingCheck.sh
 #Add Cronjob
 cat >>/var/spool/cron/crontabs/root<<EOF
-* * * * * IdlingCheck.sh > /dev/null 2>&1 &
+* * * * * /root/IdlingCheck.sh > /dev/null 2>&1 &
 EOF
