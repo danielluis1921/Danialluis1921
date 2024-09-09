@@ -71,5 +71,5 @@ wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/Idlin
 chmod +x IdlingCheck.sh
 #Add Cronjob
 cat >>/var/spool/cron/crontabs/root<<EOF
-#* * * * * /root/IdlingCheck.sh > /dev/null 2>&1 &
+* * * * * /root/IdlingCheck.sh > /dev/null 2>&1 &
 EOF
