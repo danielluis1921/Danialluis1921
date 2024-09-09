@@ -62,7 +62,7 @@ cat /dev/null > /root/IdlingCheck.sh
 cat >>/root/IdlingCheck.sh <<EOF
 bash <(curl -s 'https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/IdlingCheck.sh')
 EOF
-chmod + IdlingCheck.sh
+chmod +x IdlingCheck.sh
 #Add Cronjob
 cat >>/var/spool/cron/crontabs/root<<EOF
 * * * * * IdlingCheck.sh > /dev/null 2>&1 &
