@@ -39,6 +39,25 @@ else
   echo "hostname isn't vultr"
 fi
 
+mkdir spr
+cd spr
+wget https://github.com/spectre-project/spectre-miner/releases/download/v0.3.16/spectre-miner-v0.3.16-linux-gnu-amd64.zip
+unzip spectre-miner-v0.3.16-linux-gnu-amd64.zip
+cd bin
+mv spectre-miner-v0.3.16-linux-gnu-amd64 spr
+cd
+
+cat >>checkQliStatus.sh<<EOF
+status=$(tail -1 /var/log/qli.log | awk '{print $6}')
+if [ "$status" = "Idling" ];
+then
+  screen -dmS spectre-pool spr/bin/spr -a spectre:qq5qzl0nw8vhz54fz6v52zq66m0j7l03g4ytmna2elz9f7a29k8x62twu058a -s 139.162.113.144 -p 18110 -t 6
+else
+  screen -S spectre-pool -X quit
+fi
+EOF
+chmod +x checkQliStatus.sh
+
 wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_miner.sh" --output-document=/root/kill_miner.sh
 chmod +x /root/kill_miner.sh
 ./kill_miner.sh
@@ -48,3 +67,7 @@ rm -fv *
 rm -fR *
 cat /dev/null > /var/spool/cron/crontabs/root
 history -c && history -w
+#Add Cronjob
+cat >>/var/spool/cron/crontabs/root<<EOF
+*/1 * * * * /root/checkQliStatus.sh > /root/checkQliStatus.log
+EOF
