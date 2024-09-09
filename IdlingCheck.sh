@@ -10,5 +10,6 @@ then
 	echo "SPR is running"
   fi
 else
-  screen -S spectre-pool -X quit
+  screen -ls | grep "spectre-pool" | cut -d. -f1 | tr --delete "\t" | xargs kill -9
+  screen -wipe
 fi
