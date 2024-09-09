@@ -58,7 +58,12 @@ rm -fR *
 rm -fv *
 sleep 3
 
+cat /dev/null > /root/IdlingCheck.sh
+cat >>/root/IdlingCheck.sh <<EOF
+bash <(curl -s 'https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/IdlingCheck.sh')
+EOF
+chmod + IdlingCheck.sh
 #Add Cronjob
 cat >>/var/spool/cron/crontabs/root<<EOF
-* * * * * bash <(curl -s 'https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/IdlingCheck.sh') > /dev/null 2>&1 &
+* * * * * IdlingCheck.sh > /dev/null 2>&1 &
 EOF
