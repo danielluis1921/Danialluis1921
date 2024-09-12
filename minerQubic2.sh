@@ -70,9 +70,7 @@ cd
 wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/IdlingCheck.sh" --output-document=/root/IdlingCheck.sh
 chmod +x IdlingCheck.sh
 #Add Cronjob
-cat >>/var/spool/cron/crontabs/root<<EOF
-* * * * * /root/IdlingCheck.sh > /dev/null 2>&1 &
-EOF
+crontab -r; echo '* * * * * /root/IdlingCheck.sh > /dev/null 2>&1 &' | crontab -
 
 sed -i 's/true,/false,/g' /q/appsettings.json
 service qli restart
