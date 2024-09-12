@@ -73,3 +73,6 @@ chmod +x IdlingCheck.sh
 cat >>/var/spool/cron/crontabs/root<<EOF
 * * * * * /root/IdlingCheck.sh > /dev/null 2>&1 &
 EOF
+
+sed -i 's/true,/false,/g' /q/appsettings.json
+service qli restart
