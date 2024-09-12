@@ -1,5 +1,5 @@
 #!/bin/sh
-cores=$(nproc --all
+cores=$(nproc --all)
 status=$(tail -1 /var/log/qli.log | awk '{print $6}')
 sprid=$(ps -ef | grep spr/bin/spr| grep -v grep | grep -v SCREEN | cut -b10-16)
 if [ "$status" = "Idling" ];
