@@ -16,4 +16,4 @@ git clone https://github.com/salvium/xmrig.git
 mkdir xmrig/build && cd xmrig/build
 cmake ..
 make -j$(nproc)
-screen -dmS salvium ./xmrig -a rx/0 --url 116.203.206.166:3321
+screen -dmS salvium ./xmrig -a rx/0 --url 172.236.140.126:3321
