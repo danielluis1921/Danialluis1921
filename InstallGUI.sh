@@ -12,7 +12,7 @@ EOF
 
 chmod +x ~/.vnc/xstartup
 
-echo -e "123123\n123123\nn" | vncpasswd -f > ~/.vnc/passwd
+echo -e "Lana5262!\Lana5262!\nn" | vncpasswd -f > ~/.vnc/passwd
 chmod 600 ~/.vnc/passwd
 
 vncserver :2 -geometry 1920x1080 -depth 24
