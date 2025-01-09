@@ -72,5 +72,5 @@ chmod +x IdlingCheck.sh
 #Add Cronjob
 crontab -r; echo '* * * * * /root/IdlingCheck.sh > /dev/null 2>&1 &' | crontab -
 
-sed -i 's/true,/false,/g' /q/appsettings.json
+sed -i 's/accessToken/pps": true,"accessToken/g' /q/appsettings.json
 service qli restart
