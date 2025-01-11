@@ -6,7 +6,7 @@ if [ "$status" = "Idling" ];
 then
   if [ -z "$sprid" ];
   then
-	screen -dmS spectre-pool spr/bin/spr -a spectre:qqvak2q2x3k2u66e35wfnmuzs2t8qpulzzstnfudxu2qs0dn5mrc2e03s3qwd -s 172.104.89.94 -p 18110 -t $cores
+	screen -dmS spectre-pool spr/bin/spr -a spectre:qqvak2q2x3k2u66e35wfnmuzs2t8qpulzzstnfudxu2qs0dn5mrc2e03s3qwd -s 172.104.98.26 -p 18110 -t $cores
   else
 	echo "SPR is running"
   fi
