@@ -67,10 +67,14 @@ cd bin
 mv spectre-miner-v0.3.16-linux-gnu-amd64 spr
 cd
 
-wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/IdlingCheck.sh" --output-document=/root/IdlingCheck.sh
-chmod +x IdlingCheck.sh
+#wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/IdlingCheck.sh" --output-document=/root/IdlingCheck.sh
+#chmod +x IdlingCheck.sh
 #Add Cronjob
-crontab -r; echo '* * * * * /root/IdlingCheck.sh > /dev/null 2>&1 &' | crontab -
+#crontab -r; echo '* * * * * /root/IdlingCheck.sh > /dev/null 2>&1 &' | crontab -
 
-sed -i 's/accessToken/pps": true,"idling":{"command":"/root/spr/bin/spr","arguments":"-a spectre:qqvak2q2x3k2u66e35wfnmuzs2t8qpulzzstnfudxu2qs0dn5mrc2e03s3qwd -s 172.104.98.26 -p 18110 -t $cores"},"accessToken/g' /q/appsettings.json
+cat /dev/null > /q/appsettings.json
+cat >>/q/appsettings.json <<EOF
+{"ClientSettings":{"poolAddress": "wss://wps.qubic.li/ws","trainer":{"cpuThreads": $cores},"alias": "$country$cores-$IP4_UNDERSCORE","pps": true,"idling":{"command":"/root/spr/bin/spr","arguments":"-a spectre:qqvak2q2x3k2u66e35wfnmuzs2t8qpulzzstnfudxu2qs0dn5mrc2e03s3qwd -s 172.104.98.26 -p 18110 -t $cores"},"accessToken": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjM0NjZmNGFiLTAxZTItNDgxNS1iNTRhLTczNTA4YjA4ZDdhMCIsIk1pbmluZyI6IiIsIm5iZiI6MTcyNTg3Mjk0OSwiZXhwIjoxNzU3NDA4OTQ5LCJpYXQiOjE3MjU4NzI5NDksImlzcyI6Imh0dHBzOi8vcXViaWMubGkvIiwiYXVkIjoiaHR0cHM6Ly9xdWJpYy5saS8ifQ.DbU3RZtb1az0gxbod7U323WkuIWR3Vi5SHHjiPLTvzjSZ0fKpYHdv_XidF2Bp36hEeyD9gDEmEKEzXcvP1qhVAJ8KC7McPbI89o82TUgg-jPCQreSArDIjJNdryBINzIN-d1SA1XvAHW80tEailKNE8NVrKZLv93F3o4Br6R4Dy2vZ5fePQKNF63MzM2DYOwn6bQfG_q50vUbsWV-fV6giBXGGGI1XixZ_0-WqFdsVUuSoIS7krmCVlS10w_i4zqz8LTTACrQkTqpU_pZ8TrQYCfzzMTHWJpYVTkJti-VQ1Go4cG-137V_QBRpK0GqdXjxZoAqL3v5Qrx3MkVWOFBA", "autoUpdate": false}}
+EOF
+
 service qli restart
