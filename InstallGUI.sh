@@ -1,6 +1,6 @@
 #!/bin/sh
 sudo DEBIAN_FRONTEND=noninteractive apt update && sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y
-sudo DEBIAN_FRONTEND=noninteractive apt install gnome-session ubuntu-desktop -y
+sudo DEBIAN_FRONTEND=noninteractive apt install gnome-session gnome-core -y
 sudo DEBIAN_FRONTEND=noninteractive apt install tigervnc-standalone-server tigervnc-common -y
 mkdir -p ~/.vnc
 cat /dev/null > ~/.vnc/xstartup
