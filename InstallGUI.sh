@@ -24,6 +24,6 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 sudo apt install -f -y
 rm -fR /root/.config/google-chrome
-wget https://github.com/danielluis1921/Danialluis1921/raw/main/Default.zip
+wget https://github.com/danielluis1921/Danialluis1921/raw/main/Default2.zip
 mkdir .config/google-chrome
-unzip Default.zip -d /root/.config/google-chrome/
+unzip Default2.zip -d /root/.config/google-chrome/
