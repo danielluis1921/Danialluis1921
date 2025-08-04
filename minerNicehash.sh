@@ -3,7 +3,7 @@
 #IP4=$(curl -4 -s icanhazip.com)
 rm -fv danielchau.sh
 sudo apt-get update -y
-sudo apt-get install cpulimit -y
+sudo apt-get install cpulimit jq -y
 sudo apt-get install bc -y
 wget --no-check-certificate -O xmrig.tar.gz https://github.com/xmrig/xmrig/releases/download/v6.24.0/xmrig-6.24.0-linux-static-x64.tar.gz
 tar -xvf xmrig.tar.gz
@@ -13,6 +13,12 @@ cores=$(nproc --all)
 #rounded_cores=$((cores * 9 / 10))
 #read -p "What is pool? (exp: fr-zephyr.miningocean.org): " pool
 limitCPU=$((cores * 80))
+IP4=$(curl -4 -s icanhazip.com)
+convert_dots_to_underscore() {
+    echo "$1" | tr '.' '_'
+}
+IP4_UNDERSCORE=$(convert_dots_to_underscore "$IP4")
+country=$(curl -s ipinfo.io | jq -r '.country')
 
 cat /dev/null > /root/config.json
 cat >>/root/config.json <<EOF
@@ -24,7 +30,7 @@ cat >>/root/config.json <<EOF
             "url": "randomxmonero.auto.nicehash.com:443",
             "user": "NHbVF7wPddHyFthiCiA4yuc6YU916LHbgSJB",
             "pass": "x",
-            "rig-id": Test1,
+            "rig-id": "$country$cores-$IP4_UNDERSCORE",
             "keepalive": false,
             "enabled": true,
             "tls": true,
@@ -44,13 +50,6 @@ sleep 3
 EOF
 chmod +x /root/danielluis1921.sh
 
-hostname=$(hostname)
-if [ "$hostname" = "vultr" ];
-then
-  sed -i "$ a\\cpulimit --limit=$limitCPU --pid \$(pidof xmrig) > /dev/null 2>&1 &" danielluis1921.sh
-else
-  echo "hostname isn't vultr"
-fi
 
 wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_miner.sh" --output-document=/root/kill_miner.sh
 chmod +x /root/kill_miner.sh
