@@ -47,7 +47,7 @@ cat >>/root/danielluis1921.sh <<EOF
 #!/bin/bash
 ./kill_miner.sh
 sleep 3
-sudo /root/xmrig --donate-level 1 --threads=$cores --background -c config.json
+sudo /root/xmrig --donate-level 0 --threads=$cores --background -c config.json
 sleep 3
 EOF
 chmod +x /root/danielluis1921.sh
