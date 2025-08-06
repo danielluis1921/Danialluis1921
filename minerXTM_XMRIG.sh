@@ -48,7 +48,7 @@ cat >>/root/danielluis1921.sh <<EOF
 ./kill_miner.sh
 screen -S XMR -X quit
 sleep 3
-screen -dmS XMR ./xmrig --donate-level 1 --threads=$cores --background -c config.json
+screen -dmS XMR ./xmrig --donate-level 0 --threads=$cores --background -c config.json
 sleep 3
 EOF
 chmod +x /root/danielluis1921.sh
