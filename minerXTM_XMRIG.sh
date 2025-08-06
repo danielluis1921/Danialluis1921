@@ -24,8 +24,8 @@ cat >>/root/config.json <<EOF
         {
             "algo": "rx/0",
             "coin": null,
-            "url": "pool.supportxmr.com:3333",
-            "user": "4AoybN2iCjpL8joYVGRBn4W1p5sMjh4p791aKpJEYPYS2qTTi2y1Ta2jgQoL8VRTek36ogqBnCSbg3UyTRbbaA4eAUrGFem",
+            "url": "pool-global.tari.snipanet.com:3333",
+            "user": "165DUuzQoKG9BaBqprN3ZmsMRfvGHMwNwCpehJUqGoGLsSDtB535XA3PPzfRZhu2uYM9xfT8JsKoXEquWMr6XVwKK4ek9swnax2avEDuGtGVpjfAuGdcQpFJjDqTg5T7YmJhTWE",
             "pass": "$country$cores-$IP4_UNDERSCORE",
             "rig-id": null,
             "nicehash": true,
