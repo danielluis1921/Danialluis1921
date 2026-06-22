@@ -1,80 +1,84 @@
-#!/bin/sh
-service qli stop
-IP4=$(curl -4 -s icanhazip.com)
-convert_dots_to_underscore() {
-    echo "$1" | tr '.' '_'
-}
-IP4_UNDERSCORE=$(convert_dots_to_underscore "$IP4")
-rm -fR *
-rm -fv *
-sudo apt-get update -y
-sudo apt-get install cpulimit jq -y
-sudo apt-get install unzip -y
-wget -O qli-Service-install.sh https://dl.qubic.li/cloud-init/qli-Service-install.sh
-chmod +x qli-Service-install.sh
-cores=$(nproc --all)
-limitCPU=$((cores * 80))
-country=$(curl -s ipinfo.io | jq -r '.country')
+#!/usr/bin/env bash
+set -euo pipefail
 
-cat /dev/null > /root/danielluis1921.sh
-cat >>/root/danielluis1921.sh <<EOF
-#!/bin/bash
-sudo ./kill_miner.sh
-sleep 5
-sudo ./qli-Service-install.sh $cores eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjM0NjZmNGFiLTAxZTItNDgxNS1iNTRhLTczNTA4YjA4ZDdhMCIsIk1pbmluZyI6IiIsIm5iZiI6MTc4MjEwMzA4NiwiZXhwIjoxODEzNjM5MDg2LCJpYXQiOjE3ODIxMDMwODYsImlzcyI6Imh0dHBzOi8vcXViaWMubGkvIiwiYXVkIjoiaHR0cHM6Ly9xdWJpYy5saS8ifQ.pQS21R7yCQGIscd25L4xFd9P-X3DrmtLsizqJBybWxwf-9BBGwky9QQDHICT0RsoqV545nMvpzPosI-bwgTRN2pp1BY8mNF6c77yWTbcFjiFq570ZuipDwz0hmiPHyUhLAW_EYxF3apT63aT-Wqb1Y451HI6M0Y1FxTkog1YZktYckvfwhhYellKhTemMXDGYnOwtitVoiRjmBOT2kFGZhDqveMo0ALi2J1vGApxIlgd-EQqkrQGE5p1Ei6y9zRHF1uuDiAOg69MZk80ZICd4tTPAot5xlsIiK4dwVSbdPl89FqK8CPPuHVKoPvqyAZ3CT1HrA5C1VMKPTUz4Q_cwA $country$cores-$IP4_UNDERSCORE> /dev/null 2>&1 &
-sleep 3
+ACCESS_TOKEN="eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjM0NjZmNGFiLTAxZTItNDgxNS1iNTRhLTczNTA4YjA4ZDdhMCIsIk1pbmluZyI6IiIsIm5iZiI6MTc4MjExMTE0NCwiZXhwIjoxODEzNjQ3MTQ0LCJpYXQiOjE3ODIxMTExNDQsImlzcyI6Imh0dHBzOi8vcXViaWMubGkvIiwiYXVkIjoiaHR0cHM6Ly9xdWJpYy5saS8ifQ.VMgY8jJXLzGe1PCW4a7py31R7bSJpqvlC_bI6p7ULsgjEgx0wPyiiphoH3AIhST3ZomkHvji2OYqxNQjncI4kRxvERqAOlBsSwtDxedSu7UDPYBoN83xbbnGKAG5_ZQI5BtcC01x0_-ElvuxYFRq2mmlUOO6n-MH4Wz-iV2bc7s-3d-JQrIavTSRExF4H8cQDt8wX_RFMU_-puyC2cYY8HuNCFCTTkr_yNPgZEai9nloqSHRSHN8S6Hd5pDL6XoEYMCZLIEE4g2ccie3SfCs6lAkgNgJaEXTg6Q5IbyfP5cjKX4FGAFuBq7pCedbYsDF6rLHX8lNbaU-jlBCiqiCog"
+POOL_ADDRESS="wss://wps.qubic.li/ws"
+INSTALL_URL="https://dl.qubic.li/cloud-init/qli-Service-install-auto.sh"
+
+# ===== Basic info =====
+CORES="$(nproc --all)"
+IP4="$(curl -4 -s https://icanhazip.com || hostname -I | awk '{print $1}')"
+IP4_SAFE="$(echo "$IP4" | tr '.' '_')"
+COUNTRY="$(curl -s https://ipinfo.io/country || echo XX)"
+ALIAS="${COUNTRY}${CORES}-${IP4_SAFE}"
+
+echo "[INFO] Cores: $CORES"
+echo "[INFO] IP: $IP4"
+echo "[INFO] Alias: $ALIAS"
+
+# ===== Packages =====
+apt-get update -y
+apt-get install -y curl wget jq unzip
+
+# ===== HugePages =====
+# Epoch 218 recommendation:
+# AVX2/GENERIC: 90 hugepages per thread
+HUGEPAGES=$((CORES * 90))
+
+echo "[INFO] Setting HugePages: $HUGEPAGES"
+sysctl -w vm.nr_hugepages="$HUGEPAGES"
+
+cat >/etc/sysctl.d/99-qubic-hugepages.conf <<EOF
+vm.nr_hugepages=$HUGEPAGES
 EOF
 
-chmod +x /root/danielluis1921.sh
+# ===== Prepare directory =====
+mkdir -p /q
+cd /q
 
-hostname=$(hostname)
-if [ "$hostname" = "vultr" ];
-then
-  sed -i "$ a\\cpulimit --limit=$limitCPU --pid \$(pidof qli-runner) > /dev/null 2>&1 &" danielluis1921.sh
-  sed -i 's/sleep 3/sleep 25/g' danielluis1921.sh
-  sed -i 's/New-/Vultr-/g' danielluis1921.sh
-  New-
-else
-  sed -i 's/stratum-asia/stratum-eu/g' danielluis1921.sh
-  sed -i 's/stratum-na/stratum-eu/g' danielluis1921.sh
-  echo "hostname isn't vultr"
+# ===== Stop old service if exists =====
+if systemctl list-unit-files | grep -q '^qli.service'; then
+    systemctl stop qli || true
 fi
 
-mkdir spr
-cd spr
-wget https://github.com/spectre-project/spectre-miner/releases/download/v0.3.16/spectre-miner-v0.3.16-linux-gnu-amd64.zip
-unzip spectre-miner-v0.3.16-linux-gnu-amd64.zip
-cd bin
-mv spectre-miner-v0.3.16-linux-gnu-amd64 spr
-cd
+# ===== Download official installer =====
+wget -O /q/qli-Service-install.sh "$INSTALL_URL"
+chmod +x /q/qli-Service-install.sh
 
-wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/kill_miner.sh" --output-document=/root/kill_miner.sh
-chmod +x /root/kill_miner.sh
-./kill_miner.sh
-sleep 3
-./danielluis1921.sh
-cat /dev/null > /var/spool/cron/crontabs/root
-history -c && history -w
-rm -fR *
-rm -fv *
-sleep 3
+# ===== Install QLI service =====
+# Format: installer <threads> <token> <alias>
+/q/qli-Service-install.sh "$CORES" "$ACCESS_TOKEN" "$ALIAS"
 
-mkdir spr
-cd spr
-wget https://github.com/spectre-project/spectre-miner/releases/download/v0.3.16/spectre-miner-v0.3.16-linux-gnu-amd64.zip
-unzip spectre-miner-v0.3.16-linux-gnu-amd64.zip
-cd bin
-mv spectre-miner-v0.3.16-linux-gnu-amd64 spr
-cd
-
-#wget "https://raw.githubusercontent.com/danielluis1921/Danialluis1921/main/IdlingCheck.sh" --output-document=/root/IdlingCheck.sh
-#chmod +x IdlingCheck.sh
-#Add Cronjob
-#crontab -r; echo '* * * * * /root/IdlingCheck.sh > /dev/null 2>&1 &' | crontab -
-
-cat /dev/null > /q/appsettings.json
-cat >>/q/appsettings.json <<EOF
-{"ClientSettings":{"poolAddress": "wss://wps.qubic.li/ws","trainer":{"cpuThreads": $cores},"alias": "$country$cores-$IP4_UNDERSCORE","pps": false,"accessToken": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjM0NjZmNGFiLTAxZTItNDgxNS1iNTRhLTczNTA4YjA4ZDdhMCIsIk1pbmluZyI6IiIsIm5iZiI6MTcyNTg3Mjk0OSwiZXhwIjoxNzU3NDA4OTQ5LCJpYXQiOjE3MjU4NzI5NDksImlzcyI6Imh0dHBzOi8vcXViaWMubGkvIiwiYXVkIjoiaHR0cHM6Ly9xdWJpYy5saS8ifQ.DbU3RZtb1az0gxbod7U323WkuIWR3Vi5SHHjiPLTvzjSZ0fKpYHdv_XidF2Bp36hEeyD9gDEmEKEzXcvP1qhVAJ8KC7McPbI89o82TUgg-jPCQreSArDIjJNdryBINzIN-d1SA1XvAHW80tEailKNE8NVrKZLv93F3o4Br6R4Dy2vZ5fePQKNF63MzM2DYOwn6bQfG_q50vUbsWV-fV6giBXGGGI1XixZ_0-WqFdsVUuSoIS7krmCVlS10w_i4zqz8LTTACrQkTqpU_pZ8TrQYCfzzMTHWJpYVTkJti-VQ1Go4cG-137V_QBRpK0GqdXjxZoAqL3v5Qrx3MkVWOFBA", "autoUpdate": false}}
+# ===== Write appsettings.json =====
+cat >/q/appsettings.json <<EOF
+{
+  "ClientSettings": {
+    "poolAddress": "$POOL_ADDRESS",
+    "trainer": {
+      "cpu": true,
+      "gpu": false,
+      "cpuThreads": $CORES,
+      "cpuVersion": "AVX2"
+    },
+    "alias": "$ALIAS",
+    "pps": true,
+    "accessToken": "$ACCESS_TOKEN",
+    "autoUpdate": true,
+    "displayDetailedHashrates": true,
+    "displayUptime": true
+  }
+}
 EOF
 
-service qli restart
+# ===== Restart service =====
+systemctl daemon-reload
+systemctl enable qli
+systemctl restart qli
+
+sleep 5
+
+echo "[INFO] QLI service status:"
+systemctl --no-pager status qli || true
+
+echo "[INFO] Latest log:"
+tail -n 30 /var/log/qli.log || true
